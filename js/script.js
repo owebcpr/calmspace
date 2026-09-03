@@ -32,6 +32,7 @@ const sadLetter = document.querySelector(".sad__letter");
 
 let activityBack = null;
 let ellyImg = null;
+let sadTimers = [];
 
 let groundingUsedTasks = [];
 let groundingStep = 0;
@@ -624,6 +625,8 @@ function handleActivityBack() {
         "true"
     );
 
+    resetSad();
+    
     sad.classList.remove(
         "is-active"
     );
@@ -640,6 +643,40 @@ function handleActivityBack() {
     });
 
     welcome.style.display = "";
+}
+
+/*
+   Таймери
+*/
+function setSadTimeout(callback, delay) {
+
+    const timer =
+        setTimeout(() => {
+
+            sadTimers =
+                sadTimers.filter(
+                    (item) => item !== timer
+                );
+
+            callback();
+
+        }, delay);
+
+    sadTimers.push(timer);
+
+    return timer;
+}
+
+
+function clearSadTimers() {
+
+    sadTimers.forEach(
+        (timer) => {
+            clearTimeout(timer);
+        }
+    );
+
+    sadTimers = [];
 }
 
 
@@ -1018,10 +1055,189 @@ function showNextGroundingScene(sceneName) {
 /* =========================================================
    СУМНИЙ ЕКРАН
    ========================================================= */
+function resetSad() {
+
+    /* -----------------------------------------
+       СКАСОВУЄМО ВСІ СТАРІ АНІМАЦІЇ
+       ----------------------------------------- */
+
+    clearSadTimers();
+
+
+    /* -----------------------------------------
+       ПОЧАТКОВИЙ ТЕКСТ
+       ----------------------------------------- */
+
+    sadTitle.textContent =
+        "Мені шкода, що тобі зараз сумно. Я побуду поруч";
+
+    sadTitle.style.opacity =
+        "1";
+
+
+    /* -----------------------------------------
+       ПОЧАТКОВА КАРТИНКА ЕЛЛІ
+       ----------------------------------------- */
+
+    const sadEllyCurrent =
+        document.querySelector(
+            ".sad__elly-image--current"
+        );
+
+    const sadEllyNext =
+        document.querySelector(
+            ".sad__elly-image--next"
+        );
+
+    const sadEllyImage =
+        document.querySelector(
+            ".sad__elly-image"
+        );
+
+
+    if (sadEllyCurrent) {
+
+        sadEllyCurrent.src =
+            "images/elly/elly_sadly.webp";
+
+        sadEllyCurrent.style.opacity =
+            "1";
+    }
+
+
+    if (sadEllyNext) {
+
+        sadEllyNext.src =
+            "images/elly/elly_sadly1.webp";
+
+        sadEllyNext.style.opacity =
+            "0";
+    }
+
+
+    if (sadEllyImage) {
+
+        sadEllyImage.src =
+            "images/elly/elly_sadly1.webp";
+
+        sadEllyImage.style.opacity =
+            "1";
+    }
+
+
+    /* -----------------------------------------
+       ПОВЕРТАЄМО МОДАЛЬНЕ ВІКНО
+       ----------------------------------------- */
+
+    sadEmotionView.style.display =
+        "";
+
+    sadEmotionView.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    sadCustomView.style.display =
+        "none";
+
+    sadCustomView.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    sadModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    /* -----------------------------------------
+       ОЧИЩАЄМО ПОВІДОМЛЕННЯ
+       ----------------------------------------- */
+
+    const sadMessage =
+        document.querySelector(
+            ".sad__message"
+        );
+
+    if (sadMessage) {
+        sadMessage.value = "";
+    }
+
+
+    /* -----------------------------------------
+       ОЧИЩАЄМО CANVAS
+       ----------------------------------------- */
+
+    const sadCanvas =
+        document.querySelector(
+            ".sad__canvas"
+        );
+
+    if (sadCanvas) {
+
+        const context =
+            sadCanvas.getContext("2d");
+
+        context.clearRect(
+            0,
+            0,
+            sadCanvas.width,
+            sadCanvas.height
+        );
+    }
+
+
+    /* -----------------------------------------
+       ПОВЕРТАЄМО ЕЛЛІ В ПОЧАТКОВИЙ СТАН
+       ----------------------------------------- */
+
+    const sadElly =
+        document.querySelector(
+            ".sad__elly"
+        );
+
+    if (sadElly) {
+
+        sadElly.classList.remove(
+            "is-raised"
+        );
+    }
+
+
+    /* -----------------------------------------
+       ХОВАЄМО АКТИВНОСТІ
+       ----------------------------------------- */
+
+    activityOptions.classList.remove(
+        "is-visible"
+    );
+
+    hideActivityBack();
+
+
+    /* -----------------------------------------
+       ЛИСТ ЕЛЛІ
+       ----------------------------------------- */
+
+    sadLetter.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    sadLetter.classList.remove(
+        "is-flying"
+    );
+
+    sadLetter.style.display =
+        "none";
+}
+
 
 function showSadEmotionModal() {
 
-    setTimeout(() => {
+    setSadTimeout(() => {
 
         const ellyImage =
             document.querySelector(
@@ -1034,7 +1250,7 @@ function showSadEmotionModal() {
         sadTitle.style.opacity =
             "0";
 
-        setTimeout(() => {
+        setSadTimeout(() => {
 
             sadModal.setAttribute(
                 "aria-hidden",
@@ -1060,7 +1276,7 @@ function changeSadEllyImage(
     ellyImage.style.opacity =
         "0";
 
-    setTimeout(() => {
+    setSadTimeout(() => {
 
         ellyImage.src =
             image;
@@ -1135,7 +1351,7 @@ function changeSadEllyScene(
 
     });
 
-    setTimeout(() => {
+    setSadTimeout(() => {
 
         currentImage.src =
             imageSrc;
@@ -1164,7 +1380,7 @@ function startEllyBlinking(
     delays.forEach(
         (delay) => {
 
-            setTimeout(() => {
+            setSadTimeout(() => {
 
                 blinkElly(
                     selector,
@@ -1455,7 +1671,7 @@ function showSadLetterReceived(
     });
 
 
-    setTimeout(() => {
+    setSadTimeout(() => {
 
         sadLetter.setAttribute(
             "aria-hidden",
@@ -1487,7 +1703,7 @@ function showSadLetterReceived(
         });
 
 
-        setTimeout(() => {
+        setSadTimeout(() => {
 
             changeSadEllyImage(
                 "images/elly/elly_cuddles2.webp",
@@ -1500,7 +1716,7 @@ function showSadLetterReceived(
             );
 
 
-            setTimeout(() => {
+            setSadTimeout(() => {
 
                 const ellyImage =
                     document.querySelector(
@@ -1531,7 +1747,7 @@ function showSadLetterReceived(
                 );
 
 
-                setTimeout(() => {
+                setSadTimeout(() => {
 
                     sadTitle.textContent =
                         getSadEmotionPhrase(
@@ -1554,7 +1770,7 @@ function showSadLetterReceived(
                     );
 
 
-                    setTimeout(() => {
+                    setSadTimeout(() => {
 
                         changeSadEllyScene(
                             "images/elly/elly_sadly3.webp",
@@ -1578,7 +1794,7 @@ function showSadLetterReceived(
                                 );
 
 
-                                setTimeout(() => {
+                                setSadTimeout(() => {
 
                                     showSadActivityOptions();
 
@@ -1861,6 +2077,8 @@ stateCards.forEach(
                    ----------------------------------------- */
 
                 if (state === "sad") {
+
+                    resetSad();
 
                     sad.classList.add(
                         "is-active"
