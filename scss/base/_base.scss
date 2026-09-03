@@ -1,0 +1,75 @@
+/* ==========================================
+   BASE
+   Базові стилі HTML-елементів
+========================================== */
+
+@use "tokens";
+
+/* ==========================================
+   HTML
+========================================== */
+
+html {
+    font-family: var(--font-family);
+    font-size: 100%;
+    scrollbar-gutter: stable;
+}
+
+/* ==========================================
+   Body
+========================================== */
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+
+    font-family: var(--font-family);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.5;
+
+    transition:
+        background-color var(--transition-base),
+        color var(--transition-base);
+}
+
+/* ==========================================
+   Виділення тексту
+========================================== */
+
+::selection {
+    background-color: var(--color-primary);
+    color: var(--bg-secondary);
+}
+
+/* ==========================================
+   Фокус клавіатури
+========================================== */
+
+:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+/* ==========================================
+   Прихований, але доступний контент
+========================================== */
+
+.visually-hidden {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+    border: 0;
+}

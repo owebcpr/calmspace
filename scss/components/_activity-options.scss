@@ -1,0 +1,105 @@
+.activity-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: var(--space-3);
+
+    width: 100%;
+    max-width: 520px;
+
+    max-height: 0;
+    padding: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(15px);
+
+    transition:
+        max-height 1.5s ease,
+        padding 1.5s ease,
+        opacity 1.5s ease,
+        transform 1.5s ease,
+        visibility 1.5s ease;
+
+    &.is-visible {
+        max-height: 300px;
+        padding-top: var(--space-4);
+
+        opacity: 1;
+        visibility: visible;
+
+        transform: translateY(0);
+    }
+
+    &__title {
+        margin: 0;
+
+        color: var(--text-primary);
+        font-size: var(--font-size-md);
+        font-weight: var(--font-weight-medium);
+    }
+
+    &__list {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        gap: var(--space-3);
+    }
+
+    &__option {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        gap: var(--space-1);
+
+        min-width: 90px;
+        padding: var(--space-2) var(--space-3);
+
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+
+        background: transparent;
+        color: var(--text-primary);
+
+        font-family: inherit;
+
+        cursor: pointer;
+
+        transition:
+            background-color var(--transition-fast),
+            transform var(--transition-fast);
+
+        &:hover {
+            transform: translateY(-2px);
+            background-color: var(--bg-secondary);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 3px;
+        }
+    }
+
+    &__option-icon {
+        font-size: 24px;
+        line-height: 1;
+    }
+
+    &__option-text {
+        font-size: var(--font-size-sm);
+    }
+}
+
+// .activity-back {
+//     display: none;
+
+//     &.is-visible {
+//         display: inline-flex;
+//     }
+// }

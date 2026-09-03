@@ -1,0 +1,30 @@
+/* ==========================================
+STATES
+Блок вибору емоційного стану
+========================================== */
+
+.states {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+}
+
+/* Планшет */
+
+@media (min-width: 600px) {
+    .states {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Великий екран */
+
+@media (min-width: 900px) {
+    .states {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

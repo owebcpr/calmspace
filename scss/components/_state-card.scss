@@ -1,0 +1,219 @@
+/* ==========================================
+STATE CARD
+Картка емоційного стану
+========================================== */
+
+.state-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 300px;
+    padding: var(--space-6);
+
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+
+    color: var(--text-primary);
+
+    cursor: pointer;
+
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+
+    /* ==========================================
+    Emoji / Sprite
+    ========================================== */
+
+    &__emoji {
+        position: relative;
+
+        width: 200px;
+        height: 150px;
+
+        // background-repeat: no-repeat;
+        // background-size: 450px 930px;
+
+        // /* Перший кадр */
+        // background-image: url("../../icons/sprite-emodgy.png");
+
+        /* Плавність */
+        transition: opacity var(--transition-base);
+
+        /* ==========================================
+        Перший кадр
+        ========================================== */
+
+        &::before,
+        &::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background-image: url("../../icons/sprite-emodgy.png");
+            background-repeat: no-repeat;
+            background-size: 450px 930px;
+
+            pointer-events: none;
+        }
+
+        &::before {
+            background-position: var(--sprite-start);
+
+            animation: emotion-first 3s ease-in-out infinite;
+        }
+
+        &::after {
+            background-position: var(--sprite-end);
+
+            animation: emotion-second 3s ease-in-out infinite;
+        }
+
+        /* ==========================================
+        Fear
+        ========================================== */
+
+        &--fear {
+            --sprite-start: -18px -10px;
+            --sprite-end: -243px -10px;
+        }
+
+        /* ==========================================
+        Worry
+        ========================================== */
+
+        &--worry {
+            --sprite-start: -18px -174px;
+            --sprite-end: -244px -174px;
+        }
+
+        /* ==========================================
+        Sad
+        ========================================== */
+
+        &--sad {
+            --sprite-start: -18px -326px;
+            --sprite-end: -244px -327px;
+        }
+
+        /* ==========================================
+        Angry
+        ========================================== */
+
+        &--angry {
+            --sprite-start: -18px -482px;
+            --sprite-end: -244px -482px;
+        }
+
+        /* ==========================================
+        Tired
+        ========================================== */
+
+        &--tired {
+            --sprite-start: -18px -630px;
+            --sprite-end: -244px -632px;
+        }
+
+        /* ==========================================
+        Calm
+        ========================================== */
+
+        &--calm {
+            --sprite-start: -18px -782px;
+            --sprite-end: -247px -782px;
+        }
+    }
+
+    /* ==========================================
+    Title
+    ========================================== */
+
+    &__title {
+        margin: 0;
+
+        color: var(--text-primary);
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-semibold);
+        text-align: center;
+    }
+
+    /* ==========================================
+    Description
+    ========================================== */
+
+    &__description {
+        max-width: 240px;
+
+        color: var(--text-secondary);
+        font-size: var(--font-size-sm);
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    /* ==========================================
+    Hover
+    ========================================== */
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+    }
+
+    /* ==========================================
+    Focus
+    ========================================== */
+
+    &:focus-visible {
+        outline: 3px solid var(--color-primary);
+        outline-offset: 3px;
+    }
+
+    /* ==========================================
+    Active
+    ========================================== */
+
+    &:active {
+        transform: scale(0.98);
+    }
+
+    &.is-selected {
+        border-color: var(--color-primary);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-4px);
+    }
+}
+
+
+/* ==========================================
+EMOTION ANIMATION
+
+Перемикаємо два кадри sprite.
+========================================== */
+
+@keyframes emotion-first {
+    0%,
+    45% {
+        opacity: 1;
+    }
+
+    55%,
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes emotion-second {
+    0%,
+    45% {
+        opacity: 0;
+    }
+
+    55%,
+    100% {
+        opacity: 1;
+    }
+}

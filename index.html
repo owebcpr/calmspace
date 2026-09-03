@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Спокій поруч</title>
+    <meta name="description" content="Мобільний додаток психологічної підтримки дітей під час війни.">
+
+    <link rel="icon" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="css/style.min.css">
+
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <a class="logo" href="/" aria-label="CalmSpace">
+            CalmSpace
+        </a>
+
+        <div class="header__actions">
+            <button class="button theme-toggle" type="button" aria-label="Увімкнути темну тему">
+                <img src="icons/moon.svg" alt="" width="20" height="20">
+            </button>
+
+            <button class="button language-toggle" type="button" aria-label="Змінити мову">
+                UA
+            </button>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Початковий екран -->
+        <section class="welcome" aria-labelledby="welcome-title">
+
+            <div class="welcome__content">
+                <p class="welcome__message">
+                    Я буду поруч із тобою стільки, скільки потрібно
+                </p>
+
+                <h1 class="welcome__title" id="welcome-title">
+                    Як ти зараз?
+                </h1>
+
+                <p class="welcome__description">
+                    Обери те, що найбільше схоже на твій стан
+                </p>
+            </div>
+            <!-- картки станів -->
+            <div class="states">
+                <!-- Страх -->
+                <button class="state-card" type="button">
+                    <div class="state-card__emoji state-card__emoji--fear" aria-hidden="true">
+                    </div>
+
+                    <h3 class="state-card__title">
+                        Мені дуже страшно
+                    </h3>
+
+                    <p class="state-card__description">
+                        Хочу сховатися
+                    </p>
+                </button>
+
+                <!-- Хвилювання -->
+                <button class="state-card" data-state="worry" type="button">
+                    <div class="state-card__emoji state-card__emoji--worry" aria-hidden="true">
+                    </div>
+
+                    <h3 class="state-card__title">
+                        Я хвилююся
+                    </h3>
+
+                    <p class="state-card__description">
+                        Всередині все тремтить
+                    </p>
+                </button>
+
+                <!-- Сум -->
+                <button class="state-card" data-state="sad" type="button">
+                    <div class="state-card__emoji state-card__emoji--sad" aria-hidden="true">
+                    </div>
+
+                    <h3 class="state-card__title">
+                        Мені сумно
+                    </h3>
+
+                    <p class="state-card__description">
+                        Хочеться побути тихенько
+                    </p>
+                </button>
+
+                <!-- Злість -->
+                <button class="state-card" type="button">
+                    <div class="state-card__emoji state-card__emoji--angry" aria-hidden="true">
+                    </div>
+
+                    <h3 class="state-card__title">
+                        Я злюся
+                    </h3>
+
+                    <p class="state-card__description">
+                        Мене все дратує
+                    </p>
+                </button>
+
+                <!-- Втома -->
+                <button class="state-card" type="button">
+                    <div class="state-card__emoji state-card__emoji--tired" aria-hidden="true">
+                    </div>
+
+                    <h3 class="state-card__title">
+                        Я дуже втомився
+                    </h3>
+
+                    <p class="state-card__description">
+                        Хочу тиші
+                    </p>
+                </button>
+
+                <!-- Спокій -->
+                <button class="state-card" type="button">
+                    <div class="state-card__emoji state-card__emoji--calm" aria-hidden="true">
+                    </div>
+
+                    <h3 class="state-card__title">
+                        Мені спокійно
+                    </h3>
+
+                    <p class="state-card__description">
+                        Можу трохи відпочити
+                    </p>
+                </button>
+            </div>
+        </section>
+
+        <!-- Дихальна вправа -->
+        <section class="breathing" aria-hidden="true">
+
+            <div class="breathing__main">
+
+                <div class="breathing__cloud" aria-hidden="true">
+                    <span class="breathing__frame breathing__frame--1"></span>
+                    <span class="breathing__frame breathing__frame--2"></span>
+                </div>
+
+                <div class="breathing__phases">
+                    <span class="breathing__phase breathing__phase--inhale">
+                        Вдих
+                    </span>
+
+                    <span class="breathing__phase breathing__phase--exhale">
+                        Видих
+                    </span>
+                </div>
+
+                <h2 class="breathing__title">
+                    Я тут. Давай просто подихаємо разом
+                </h2>
+
+            </div>
+            <!-- <button class="button button__back activity-back" type="button" data-activity-back>
+                Повернутися
+            </button> -->
+
+        </section>
+
+        <!-- Заземлення -->
+        <section class="grounding" aria-hidden="true">
+
+            <div class="grounding__content">
+
+                <h2 class="grounding__title">
+                    Давай на хвилинку озирнемося навколо
+                </h2>
+
+                <p class="grounding__instruction" id="grounding-instruction">
+                    Знайди поруч щось синє
+                </p>
+
+                <img class="grounding__icon" id="grounding-icon" src="" alt="">
+
+                <div class="grounding__scene is-visible" aria-hidden="false">
+
+                    <div class="grounding__scene-board">
+
+                        <img class="grounding__scene-image" src="images/scene1.webp" alt="Затишна кімната">
+
+                        <div class="grounding__scene-targets">
+                            <!-- 1 сцена -->
+                            <button class="grounding__scene-target grounding__scene-target--strawberry" type="button"
+                                data-scene="scene1" data-scene-item="strawberry" aria-label="Полуниця"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--cup" type="button"
+                                data-scene="scene1" data-scene-item="cup" aria-label="Чашка"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--plant" type="button"
+                                data-scene="scene1" data-scene-item="plant" aria-label="Рослина"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--book" type="button"
+                                data-scene="scene1" data-scene-item="book" aria-label="Книга"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--pillow" type="button"
+                                data-scene="scene1" data-scene-item="pillow" aria-label="Подушка"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--teddy" type="button"
+                                data-scene="scene1" data-scene-item="teddy" aria-label="Ведмедик"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--clock" type="button"
+                                data-scene="scene1" data-scene-item="clock" aria-label="Годинник"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--ball" type="button"
+                                data-scene="scene1" data-scene-item="ball" aria-label="М'яч"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--picture" type="button"
+                                data-scene="scene1" data-scene-item="picture" aria-label="Картина"></button>
+                            <!-- 2 сцена -->
+                            <button class="grounding__scene-target grounding__scene-target--bird" type="button"
+                                data-scene="scene2" data-scene-item="bird" aria-label="Пташка"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--sun" type="button"
+                                data-scene="scene2" data-scene-item="sun" aria-label="Сонце"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--cloud" type="button"
+                                data-scene="scene2" data-scene-item="cloud" aria-label="Хмарка"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--bench" type="button"
+                                data-scene="scene2" data-scene-item="bench" aria-label="Лавка"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--bike" type="button"
+                                data-scene="scene2" data-scene-item="bike" aria-label="Велосипед"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--butterfly" type="button"
+                                data-scene="scene2" data-scene-item="butterfly" aria-label="Метелик"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--mushroom" type="button"
+                                data-scene="scene2" data-scene-item="mushroom" aria-label="Гриб"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--flowers" type="button"
+                                data-scene="scene2" data-scene-item="flowers" aria-label="Квіти"></button>
+
+                            <!-- 3 сцена -->
+                            <!-- Дошка -->
+                            <button class="grounding__scene-target grounding__scene-target--board" type="button"
+                                data-scene-item="board" data-scene="scene3" aria-label="Дошка"></button>
+
+                            <!-- Глобус -->
+                            <button class="grounding__scene-target grounding__scene-target--globe" type="button"
+                                data-scene-item="globe" data-scene="scene3" aria-label="Глобус"></button>
+
+                            <!-- Квітка -->
+                            <button class="grounding__scene-target grounding__scene-target--classroom-plant"
+                                type="button" data-scene-item="classroom-plant" data-scene="scene3"
+                                aria-label="Квітка"></button>
+
+                            <!-- Олівці -->
+                            <button class="grounding__scene-target grounding__scene-target--teacher-pencils"
+                                type="button" data-scene-item="teacher-pencils" data-scene="scene3"
+                                aria-label="Олівці"></button>
+
+                            <!-- Стопка зошитів -->
+                            <button class="grounding__scene-target grounding__scene-target--notebooks" type="button"
+                                data-scene-item="notebooks" data-scene="scene3" aria-label="Стопка зошитів"></button>
+
+                            <!-- Відкритий зошит -->
+                            <button class="grounding__scene-target grounding__scene-target--open-notebook" type="button"
+                                data-scene-item="open-notebook" data-scene="scene3"
+                                aria-label="Відкритий зошит"></button>
+
+                            <!-- Рюкзак -->
+                            <button class="grounding__scene-target grounding__scene-target--backpack" type="button"
+                                data-scene-item="backpack" data-scene="scene3" aria-label="Рюкзак"></button>
+
+                            <!-- Вікно -->
+                            <button class="grounding__scene-target grounding__scene-target--window" type="button"
+                                data-scene-item="window" data-scene="scene3" aria-label="Вікно"></button>
+
+                            <!-- Дитячі малюнки -->
+                            <button class="grounding__scene-target grounding__scene-target--drawings" type="button"
+                                data-scene-item="drawings" data-scene="scene3" aria-label="Дитячі малюнки"></button>
+
+                            <!-- сцена 4 -->
+                            <!-- 4 сцена — затишна спальня -->
+
+                            <!-- Літак -->
+                            <button class="grounding__scene-target grounding__scene-target--airplane" type="button"
+                                data-scene-item="airplane" data-scene="scene4" aria-label="Літак"></button>
+
+                            <!-- Дитячі малюнки -->
+                            <button class="grounding__scene-target grounding__scene-target--room-drawings" type="button"
+                                data-scene-item="room-drawings" data-scene="scene4"
+                                aria-label="Дитячі малюнки"></button>
+
+                            <button class="grounding__scene-target grounding__scene-target--room-drawings1"
+                                type="button" data-scene-item="room-drawings1" data-scene="scene4"
+                                aria-label="Дитячі малюнки"></button>
+
+                            <!-- Ліжко -->
+                            <button class="grounding__scene-target grounding__scene-target--bed" type="button"
+                                data-scene-item="bed" data-scene="scene4" aria-label="Ліжко"></button>
+
+                            <!-- Лампа -->
+                            <button class="grounding__scene-target grounding__scene-target--bed-lamp" type="button"
+                                data-scene-item="bed-lamp" data-scene="scene4" aria-label="Лампа"></button>
+
+                            <!-- Книжки на полиці -->
+                            <button class="grounding__scene-target grounding__scene-target--shelf-books" type="button"
+                                data-scene-item="shelf-books" data-scene="scene4" aria-label="Книжки"></button>
+
+                            <!-- Фотографія -->
+                            <button class="grounding__scene-target grounding__scene-target--photo" type="button"
+                                data-scene-item="photo" data-scene="scene4" aria-label="Фотографія"></button>
+
+                            <!-- Ведмедик -->
+                            <button class="grounding__scene-target grounding__scene-target--teddy-room" type="button"
+                                data-scene-item="teddy-room" data-scene="scene4" aria-label="Ведмедик"></button>
+
+                            <!-- Вікно -->
+                            <button class="grounding__scene-target grounding__scene-target--room-window" type="button"
+                                data-scene-item="room-window" data-scene="scene4" aria-label="Вікно"></button>
+
+                            <!-- Місяць -->
+                            <button class="grounding__scene-target grounding__scene-target--moon" type="button"
+                                data-scene-item="moon" data-scene="scene4" aria-label="Місяць"></button>
+
+                            <!-- Глобус -->
+                            <button class="grounding__scene-target grounding__scene-target--room-globe" type="button"
+                                data-scene-item="room-globe" data-scene="scene4" aria-label="Глобус"></button>
+
+                            <!-- Рюкзак -->
+                            <button class="grounding__scene-target grounding__scene-target--room-backpack" type="button"
+                                data-scene-item="room-backpack" data-scene="scene4" aria-label="Рюкзак"></button>
+
+                            <!-- Слоненя -->
+                            <button class="grounding__scene-target grounding__scene-target--elephant" type="button"
+                                data-scene-item="elephant" data-scene="scene4" aria-label="Слоненя"></button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="grounding__actions">
+
+                    <button class="grounding__action" type="button">
+                        Знайшла / Знайшов
+                    </button>
+
+                    <button class="grounding__help" type="button">
+                        Не виходить
+                    </button>
+
+                </div>
+
+                <!-- Перевірка стану після виконання завдань -->
+                <div class="grounding__check" aria-hidden="true">
+
+                    <div class="grounding__choices">
+
+                        <button class="grounding__choice" type="button">
+                            Мені вже спокійніше
+                        </button>
+
+                        <button class="grounding__choice" type="button">
+                            Я все ще хвилююся
+                        </button>
+
+                    </div>
+
+                </div>
+                <!-- <button class="button button__back activity-back" type="button">
+                    Повернутися
+                </button> -->
+
+
+            </div>
+
+        </section>
+
+        <!-- Мені сумно -->
+        <section class="sad" aria-hidden="true">
+
+            <div class="sad__content">
+
+                <h2 class="sad__title">
+                    Мені шкода, що тобі зараз сумно. Я побуду поруч
+                </h2>
+
+                <div class="sad__elly">
+
+                    <img
+                        class="sad__elly-image sad__elly-image--current"
+                        src="images/elly/elly_sadly1.webp"
+                        alt="Еллі"
+                    >
+
+                    <img
+                        class="sad__elly-image sad__elly-image--next"
+                        src="images/elly/elly_sadly1.webp"
+                        alt=""
+                        aria-hidden="true"
+                    >
+
+                </div>
+
+                <div class="sad__letter" aria-hidden="true">
+                    <div class="sad__letter-paper">
+                        <div class="sad__letter-lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sad__action">
+                    <!-- Контент поточного кроку -->
+                     
+                    <!-- <button class="button button__back activity-back" type="button" data-activity-back>
+                        Повернутися
+                    </button> -->
+                </div>
+
+
+
+            </div>
+
+            <!-- Модальне вікно з емоціями -->
+            <div class="sad__modal" data-modal="sad-emotions" aria-hidden="true">
+                <div class="sad__modal-content">
+                    <!-- Вибір готової емоції -->
+                    <div class="sad__emotion-view">
+
+                        <p class="sad__modal-text">
+                            Хочеш залишити тут для мене одне слово про те,
+                            що ти відчуваєш?
+                        </p>
+
+                        <div class="sad__emotion-list">
+
+                            <button class="button button_sad-emotion" type="button">
+                                Сумно
+                            </button>
+
+                            <button class="button button_sad-emotion" type="button">
+                                Самотньо
+                            </button>
+
+                            <button class="button button_sad-emotion" type="button">
+                                Образливо
+                            </button>
+
+                            <button class="button button_sad-emotion" type="button">
+                                Страшно
+                            </button>
+
+                            <button class="button button_sad-emotion" type="button">
+                                Нудно
+                            </button>
+
+                            <button class="button button_sad-emotion" type="button">
+                                Злюся
+                            </button>
+
+                            <button class="button button_sad-emotion" type="button">
+                                Розгублено
+                            </button>
+
+                            <button class="button button_sad-emotion" type="button">
+                                Не знаю
+                            </button>
+
+                        </div>
+
+                        <button class="button button_sad-custom" type="button">
+                            Написати або намалювати
+                        </button>
+
+                    </div>
+
+
+                    <!-- Написати або намалювати -->
+                    <div class="sad__custom-view" aria-hidden="true">
+
+                        <p class="sad__modal-text">
+                            Напиши або намалюй, що ти відчуваєш.
+                        </p>
+
+                        <label class="sad__text-label" for="sad-message">
+                            Можеш написати кілька слів
+                        </label>
+
+                        <textarea class="sad__message" id="sad-message" maxlength="300"
+                            placeholder="Напиши тут..."></textarea>
+
+                        <p class="sad__draw-label">
+                            Або намалюй
+                        </p>
+
+                        <div class="sad__canvas-wrapper">
+                            <canvas class="sad__canvas" id="sad-canvas"></canvas>
+                        </div>
+
+                        <button class="button button_sad-clear" type="button">
+                            Очистити
+                        </button>
+
+                        <button class="button button_sad-send" type="button">
+                            Відправити листа Еллі
+                        </button>
+
+                        <button class="button button_sad-back" type="button">
+                            Назад до варіантів
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <div class="activity-options">
+            <p class="activity-options__title">
+                Що тобі зараз хочеться?
+            </p>
+
+            <div class="activity-options__list">
+
+                <button class="activity-options__option" type="button">
+                    <span class="activity-options__option-icon" aria-hidden="true">🎵</span>
+                    <span class="activity-options__option-text">Музика</span>
+                </button>
+
+                <button class="activity-options__option" type="button">
+                    <span class="activity-options__option-icon" aria-hidden="true">📖</span>
+                    <span class="activity-options__option-text">Історія</span>
+                </button>
+
+                <button class="activity-options__option" type="button">
+                    <span class="activity-options__option-icon" aria-hidden="true">🎮</span>
+                    <span class="activity-options__option-text">Гра</span>
+                </button>
+
+                <button class="activity-options__option" type="button">
+                    <span class="activity-options__option-icon" aria-hidden="true">💬</span>
+                    <span class="activity-options__option-text">Поговорити</span>
+                </button>
+
+            </div>
+
+        </div>
+    </main>
+</body>
+
+</html>

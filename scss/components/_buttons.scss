@@ -1,0 +1,224 @@
+/* ==========================================
+   BUTTON
+========================================== */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+    padding-inline: var(--space-4);
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+
+    &:hover {
+        background-color: var(--bg-primary);
+        border-color: var(--color-primary);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 3px;
+    }
+
+
+    /* ==========================================
+       BACK
+    ========================================== */
+
+    &__back {
+        padding: var(--space-2);
+        margin-top: var(--space-2);
+
+        border: 0;
+        background: transparent;
+
+        color: var(--text-secondary);
+
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-regular);
+
+        &:hover {
+            background-color: transparent;
+            border-color: transparent;
+            color: var(--text-primary);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 3px;
+        }
+    }
+
+
+    /* ==========================================
+       SAD — EMOTION
+    ========================================== */
+
+    &_sad-emotion {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        min-height: 52px;
+        padding: var(--space-3);
+
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+
+        text-align: center;
+
+        &:hover {
+            background-color: var(--bg-primary);
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 3px;
+        }
+    }
+
+
+    /* ==========================================
+       SAD — CUSTOM
+    ========================================== */
+
+    &_sad-custom {
+        display: flex;
+        width: 100%;
+        min-height: 52px;
+
+        padding: var(--space-3) var(--space-4);
+
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+
+        &:hover {
+            background-color: var(--bg-primary);
+            border-color: var(--color-primary);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 3px;
+        }
+    }
+
+
+    /* ==========================================
+       SAD — SEND
+    ========================================== */
+
+    &_sad-send {
+        display: flex;
+        width: 100%;
+        min-height: 52px;
+
+        margin-top: var(--space-4);
+        padding: var(--space-3) var(--space-4);
+
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+
+        &:hover {
+            background-color: var(--bg-primary);
+            border-color: var(--color-primary);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 3px;
+        }
+    }
+
+
+    /* ==========================================
+       SAD — BACK TO EMOTIONS
+    ========================================== */
+
+    &_sad-back {
+        display: flex;
+        width: 100%;
+
+        margin-top: var(--space-3);
+        padding: var(--space-2);
+
+        border: 0;
+        border-radius: var(--radius-md);
+
+        background: transparent;
+        color: var(--text-secondary);
+
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-regular);
+
+        &:hover {
+            background-color: var(--bg-secondary);
+            border-color: transparent;
+            color: var(--text-primary);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 3px;
+        }
+    }
+}

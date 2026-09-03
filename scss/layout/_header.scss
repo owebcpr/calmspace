@@ -1,0 +1,45 @@
+/* ==========================================
+   HEADER
+========================================== */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: var(--space-4);
+}
+
+/* Логотип */
+
+.logo {
+    color: var(--text-primary);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+
+    transition: opacity var(--transition-fast);
+}
+
+.logo:hover {
+    opacity: 0.75;
+}
+
+/* Кнопки керування */
+
+.header__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+/* ==========================================
+   TABLET / DESKTOP
+========================================== */
+
+@media (min-width: 768px) {
+
+    .header {
+        padding-inline: var(--space-6);
+    }
+}

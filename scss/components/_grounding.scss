@@ -1,0 +1,689 @@
+/* ==========================================
+   GROUNDING
+   Екран заземлення
+========================================== */
+
+.grounding {
+    display: none;
+
+    width: 100%;
+    min-height: 60vh;
+
+    padding: var(--space-6);
+
+    background-image: url("../../images/bg_grounding.webp");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    border-radius: var(--radius-lg);
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    &.is-active {
+        display: flex;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        gap: var(--space-5);
+
+        width: 100%;
+        max-width: 640px;
+    }
+
+    &__content .activity-options {
+        margin-top: -50px;
+    }
+
+    &__title {
+        max-width: 560px;
+
+        color: var(--text-primary);
+
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-semibold);
+        line-height: 1.3;
+    }
+
+    &__instruction {
+        max-width: 520px;
+
+        color: var(--text-secondary);
+
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-regular);
+        line-height: 1.5;
+
+        min-height: 5.25rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin: 0;
+        transition: opacity 500ms ease, height 500ms ease, margin 500ms ease;
+    }
+
+    &__instruction.is-empty {
+        height: 0;
+        min-height: 0;
+        margin: 0;
+        overflow: hidden;
+        opacity: 0;
+    }
+
+    &__actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        gap: var(--space-2);
+
+        width: 100%;
+        max-width: 320px;
+
+        margin-top: var(--space-3);
+    }
+
+    &__actions.is-hidden {
+        display: none;
+    }
+
+    &__action {
+        width: 100%;
+        min-height: 52px;
+
+        padding-inline: var(--space-5);
+
+        border: 0;
+        border-radius: var(--radius-md);
+
+        background-color: var(--color-primary);
+        color: #FFFFFF;
+
+        font-family: var(--font-family);
+        font-size: var(--font-size-md);
+        font-weight: var(--font-weight-medium);
+
+        cursor: pointer;
+
+        transition:
+            background-color var(--transition-fast),
+            transform var(--transition-fast),
+            box-shadow var(--transition-fast);
+
+        &:hover {
+            box-shadow: var(--shadow-sm);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 3px;
+        }
+    }
+
+    &__help {
+        padding: var(--space-2);
+
+        border: 0;
+        background: transparent;
+
+        color: var(--text-secondary);
+
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-regular);
+
+        cursor: pointer;
+
+        transition:
+            color var(--transition-fast),
+            opacity var(--transition-fast);
+
+        &:hover {
+            color: var(--text-primary);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 3px;
+            border-radius: var(--radius-sm);
+        }
+    }
+
+    &__check {
+        display: none;
+
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-4);
+
+        text-align: center;
+
+        &.is-visible {
+            display: flex;
+        }
+    }
+
+    &__choices {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-3);
+        width: 100%;
+    }
+
+    &__choice {
+        width: 100%;
+        max-width: 320px;
+        min-height: 44px;
+        padding: var(--space-3) var(--space-4);
+
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+
+        font-family: var(--font-family);
+        font-size: var(--font-size-md);
+        font-weight: var(--font-weight-regular);
+
+        cursor: pointer;
+
+        transition:
+            background-color var(--transition-fast),
+            border-color var(--transition-fast),
+            transform var(--transition-fast),
+            box-shadow var(--transition-fast);
+
+        &:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 3px;
+        }
+    }
+
+    &__elly {
+        width: 300px;
+        height: auto;
+    }
+
+    &__scene {
+        display: none;
+
+        flex-direction: column;
+        align-items: center;
+
+        gap: var(--space-4);
+
+        width: 100%;
+
+        &.is-visible {
+            display: flex;
+        }
+    }
+
+    &__scene-text {
+        margin: 0;
+
+        color: var(--text-primary);
+        font-size: var(--font-size-md);
+        font-weight: var(--font-weight-medium);
+
+        text-align: center;
+    }
+
+    &__scene-board {
+        position: relative;
+
+        width: 100%;
+        max-width: 900px;
+
+        overflow: hidden;
+
+        border-radius: var(--radius-lg);
+
+        opacity: 0;
+        transform: translateY(15px);
+
+        &.is-appearing {
+            animation: scene-appear 800ms ease forwards;
+        }
+    }
+
+    &__scene-image {
+        display: block;
+
+        width: 100%;
+        height: auto;
+    }
+
+    &__scene-targets {
+        position: absolute;
+        inset: 0;
+    }
+
+    &__scene-target {
+        position: absolute;
+
+        display: block;
+
+        padding: 0;
+
+        border: 2px solid transparent;
+        border-radius: var(--radius-md);
+
+        background: transparent;
+
+        cursor: pointer;
+
+        transition:
+            border-color var(--transition-fast),
+            background-color var(--transition-fast),
+            box-shadow var(--transition-fast);
+
+        &:focus-visible {
+            border-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+        }
+
+        &.is-found {
+            border: 2px solid var(--color-primary);
+            border-radius: var(--radius-md);
+            background-color: rgba(255, 255, 255, 0.18);
+
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.35);
+
+            pointer-events: none;
+        }
+
+        &.is-hint {
+            animation: scene-target-hint 1.2s ease-in-out infinite;
+            z-index: 10;
+        }
+    }
+
+    &__scene-target {
+        display: none;
+
+        &[data-scene="scene1"].is-active,
+        &[data-scene="scene2"].is-active,
+        &[data-scene="scene3"].is-active,
+        &[data-scene="scene4"].is-active {
+            display: block;
+        }
+    }
+
+    &__scene-target--strawberry {
+        left: 45%;
+        top: 34%;
+        width: 12%;
+        height: 18%;
+    }
+
+    &__scene-target--cup {
+        left: 59%;
+        top: 38%;
+        width: 14%;
+        height: 18%;
+    }
+
+    &__scene-target--plant {
+        left: 16%;
+        top: 23%;
+        width: 25%;
+        height: 40%;
+    }
+
+    &__scene-target--book {
+        left: 78%;
+        top: 24%;
+        width: 15%;
+        height: 35%;
+    }
+
+    &__scene-target--pillow {
+        left: 63%;
+        top: 60%;
+        width: 32%;
+        height: 32%;
+    }
+
+    &__scene-target--teddy {
+        left: 69%;
+        top: 67%;
+        width: 11%;
+        height: 26%;
+    }
+
+    &__scene-target--clock {
+        left: 26%;
+        top: 67%;
+        width: 14%;
+        height: 23%;
+    }
+
+    &__scene-target--ball {
+        left: 10%;
+        top: 80%;
+        width: 15%;
+        height: 20%;
+    }
+
+    &__scene-target--picture {
+        left: 57%;
+        top: 3%;
+        width: 22%;
+        height: 34%;
+    }
+
+    &__scene-target--bird {
+        left: 21%;
+        top: 17%;
+        width: 8%;
+        height: 12%;
+    }
+
+    &__scene-target--sun {
+        left: 61%;
+        top: 5%;
+        width: 12%;
+        height: 20%;
+    }
+
+    &__scene-target--cloud {
+        left: 75%;
+        top: 9%;
+        width: 21%;
+        height: 19%;
+    }
+
+    &__scene-target--bench {
+        left: 20%;
+        top: 63%;
+        width: 28%;
+        height: 20%;
+    }
+
+    &__scene-target--bike {
+        left: 75%;
+        top: 53%;
+        width: 20%;
+        height: 25%;
+    }
+
+    &__scene-target--butterfly {
+        left: 52%;
+        top: 54%;
+        width: 8%;
+        height: 12%;
+    }
+
+    &__scene-target--mushroom {
+        left: 7%;
+        top: 78%;
+        width: 9%;
+        height: 12%;
+    }
+
+    &__scene-target--flowers {
+        left: 68%;
+        top: 75%;
+        width: 30%;
+        height: 24%;
+    }
+
+    // ================================
+    // 3 сцена — класна кімната
+    // ================================
+
+    // Дошка
+    &__scene-target--board {
+        left: 24%;
+        top: 8%;
+        width: 37%;
+        height: 37%;
+    }
+
+    // Глобус
+    &__scene-target--globe {
+        left: 66%;
+        top: 25%;
+        width: 12%;
+        height: 20%;
+    }
+
+    // Квітка в горщику
+    &__scene-target--classroom-plant {
+        left: 0%;
+        top: 17%;
+        width: 21%;
+        height: 51%;
+    }
+
+    // Олівці на столі вчителя
+    &__scene-target--teacher-pencils {
+        left: 27%;
+        top: 44%;
+        width: 4%;
+        height: 12%;
+    }
+
+    // Стопка зошитів
+    &__scene-target--notebooks {
+        left: 43%;
+        top: 45%;
+        width: 9%;
+        height: 11%;
+    }
+
+    // Відкритий зошит учня
+    &__scene-target--open-notebook {
+        left: 51%;
+        top: 71%;
+        width: 18%;
+        height: 12%;
+    }
+
+    // Рюкзак
+    &__scene-target--backpack {
+        left: 18%;
+        top: 72%;
+        width: 12%;
+        height: 25%;
+    }
+
+    // Вікно
+    &__scene-target--window {
+        left: 80%;
+        top: 0%;
+        width: 20%;
+        height: 44%;
+    }
+
+    // Дитячі малюнки
+    &__scene-target--drawings {
+        left: 16%;
+        top: 4%;
+        width: 6%;
+        height: 14%;
+    }
+
+    // ================================
+    // 4 сцена — затишна спальня
+    // ================================
+
+    // Літак на стіні
+    &__scene-target--airplane {
+        left: 16%;
+        top: 16%;
+        width: 14%;
+        height: 17%;
+    }
+
+    // Дитячі малюнки на передній стіні
+    &__scene-target--room-drawings {
+        left: 15%;
+        top: 35%;
+        width: 15%;
+        height: 15%;
+    }
+
+    // Дитячі малюнки на лівій стіні
+    &__scene-target--room-drawings1 {
+        left: 0;
+        top: 15%;
+        width: 10%;
+        height: 30%;
+    }
+
+    // Ліжко
+    &__scene-target--bed {
+        left: 13%;
+        top: 52%;
+        width: 34%;
+        height: 35%;
+    }
+
+
+    // Лампа на тумбочці
+    &__scene-target--bed-lamp {
+        left: 4%;
+        top: 55%;
+        width: 9%;
+        height: 20%;
+    }
+
+    // Книжки на полиці
+    &__scene-target--shelf-books {
+        left: 45%;
+        top: 24%;
+        width: 14%;
+        height: 14%;
+    }
+
+    // Фотографія
+    &__scene-target--photo {
+        left: 60%;
+        top: 32%;
+        width: 8%;
+        height: 11%;
+    }
+
+    // Ведмедик
+    &__scene-target--teddy-room {
+        left: 54%;
+        top: 42%;
+        width: 7%;
+        height: 14%;
+    }
+
+
+    // Вікно
+    &__scene-target--room-window {
+        left: 77%;
+        top: 8%;
+        width: 12%;
+        height: 48%;
+    }
+
+    // Місяць
+    &__scene-target--moon {
+        left: 80%;
+        top: 15%;
+        width: 6%;
+        height: 11%;
+    }
+
+    // Глобус
+    &__scene-target--room-globe {
+        left: 90%;
+        top: 46%;
+        width: 10%;
+        height: 24%;
+    }
+
+    // Рюкзак
+    &__scene-target--room-backpack {
+        left: 75%;
+        top: 75%;
+        width: 10%;
+        height: 20%;
+    }
+
+    // Слоненя
+    &__scene-target--elephant {
+        left: 55%;
+        top: 65%;
+        width: 9%;
+        height: 16%;
+    }
+
+    @keyframes scene-target-hint {
+
+        0%,
+        100% {
+            border-color: rgba(255, 255, 255, 0.15);
+            background-color: rgba(255, 255, 255, 0.03);
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
+
+        50% {
+            border-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.15);
+            box-shadow:
+                0 0 0 5px rgba(255, 255, 255, 0.45),
+                0 0 20px 8px rgba(255, 255, 255, 0.3);
+        }
+    }
+
+    @keyframes scene-appear {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (min-width: 768px) {
+        min-height: 65vh;
+
+        padding-inline: var(--space-8);
+
+        &__title {
+            font-size: 1.75rem;
+        }
+
+        &__instruction {
+            font-size: var(--font-size-xl);
+        }
+
+        &__actions {
+            max-width: 360px;
+        }
+    }
+}

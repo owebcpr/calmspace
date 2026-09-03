@@ -1,0 +1,60 @@
+/* RESET Скидання стандартних стилів браузера */
+
+/* Усі елементи та їх псевдоелементи */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Плавне прокручування сторінки */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Базові налаштування сторінки */
+body {
+    min-height: 100vh;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Зображення */
+img,
+picture {
+    display: block;
+    max-width: 100%;
+}
+svg {
+    display: block;
+}
+
+/* Форми */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+/* Кнопки */
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* Посилання */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Списки */
+ul,
+ol {
+    list-style: none;
+}

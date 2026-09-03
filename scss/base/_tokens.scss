@@ -1,0 +1,96 @@
+/* ==========================================
+   BASE
+   Базові стилі проєкту
+========================================== */
+
+@use "variables" as *;
+
+/* ==========================================
+   CSS Custom Properties
+========================================== */
+
+:root {
+
+    /* ===== Brand Colors ===== */
+
+    --color-primary: #{$color-primary};
+    --color-secondary: #{$color-secondary};
+    --color-accent: #{$color-accent};
+
+    /* ===== Background ===== */
+
+    --bg-primary: #{$bg-primary-light};
+    --bg-secondary: #{$bg-secondary-light};
+
+    /* ===== Text ===== */
+
+    --text-primary: #{$text-primary-light};
+    --text-secondary: #{$text-secondary-light};
+    --text-accent: var(--color-primary);
+
+    /* ===== Border ===== */
+
+    --border-color: #{$border-light};
+
+    /* ===== Typography ===== */
+
+    --font-family: #{$font-family-base};
+
+    --font-size-xs: #{$font-size-xs};
+    --font-size-sm: #{$font-size-sm};
+    --font-size-md: #{$font-size-md};
+    --font-size-lg: #{$font-size-lg};
+    --font-size-xl: #{$font-size-xl};
+
+    --font-weight-regular: #{$font-weight-regular};
+    --font-weight-medium: #{$font-weight-medium};
+    --font-weight-semibold: #{$font-weight-semibold};
+    --font-weight-bold: #{$font-weight-bold};
+
+    /* ===== Spacing ===== */
+
+    --space-1: #{$space-1};
+    --space-2: #{$space-2};
+    --space-3: #{$space-3};
+    --space-4: #{$space-4};
+    --space-5: #{$space-5};
+    --space-6: #{$space-6};
+    --space-8: #{$space-8};
+    --space-10: #{$space-10};
+    --space-12: #{$space-12};
+    --space-16: #{$space-16};
+
+    /* ===== Border Radius ===== */
+
+    --radius-sm: #{$radius-sm};
+    --radius-md: #{$radius-md};
+    --radius-lg: #{$radius-lg};
+    --radius-round: #{$radius-round};
+
+    /* ===== Shadows ===== */
+
+    --shadow-sm: #{$shadow-sm};
+    --shadow-md: #{$shadow-md};
+    --shadow-lg: #{$shadow-lg};
+
+    /* ===== Animation ===== */
+
+    --transition-fast: #{$transition-fast};
+    --transition-base: #{$transition-base};
+    --transition-slow: #{$transition-slow};
+}
+
+/* ==========================================
+   Dark Theme
+========================================== */
+
+[data-theme="dark"] {
+
+    --bg-primary: #{$bg-primary-dark};
+    --bg-secondary: #{$bg-secondary-dark};
+
+    --text-primary: #{$text-primary-dark};
+    --text-secondary: #{$text-secondary-dark};
+
+    --border-color: #{$border-dark};
+}
