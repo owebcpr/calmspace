@@ -472,6 +472,126 @@ function hideActivityBack() {
 }
 
 
+function resetGrounding() {
+
+    groundingStep = 0;
+
+    groundingUsedTasks = [];
+
+    sceneCount = 0;
+
+    sceneTaskIndex = 0;
+
+    sceneUsedTasks = [];
+
+    sceneWrongAttempts = 0;
+
+    currentSceneTask = null;
+
+
+    /* -----------------------------------------
+       ПОВЕРТАЄМО ПОЧАТКОВИЙ СТАН
+       ----------------------------------------- */
+
+    groundingTitle.textContent =
+        "Давай на хвилинку озирнемося навколо";
+
+    groundingInstruction.textContent =
+        "";
+
+    groundingInstruction.classList.remove(
+        "is-empty"
+    );
+
+    groundingInstruction.style.display =
+        "";
+
+    groundingIcon.src = "";
+
+    groundingIcon.style.display =
+        "none";
+
+    groundingSuccess.style.display =
+        "none";
+
+    groundingHelp.style.display =
+        "none";
+
+
+    /* -----------------------------------------
+       ХОВАЄМО РЕЗУЛЬТАТ ПОПЕРЕДНЬОГО ПРОХОДЖЕННЯ
+       ----------------------------------------- */
+
+    groundingCheck.classList.remove(
+        "is-visible"
+    );
+
+    groundingCheck.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    groundingScene.classList.remove(
+        "is-visible"
+    );
+
+    groundingScene.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    /* -----------------------------------------
+       ОЧИЩАЄМО ПРЕДМЕТИ НА СЦЕНІ
+       ----------------------------------------- */
+
+    groundingSceneTargets.forEach(
+        (target) => {
+
+            target.classList.remove(
+                "is-found",
+                "is-hint",
+                "is-favorite",
+                "is-active"
+            );
+
+            target.style.pointerEvents =
+                "";
+        }
+    );
+
+
+    /* -----------------------------------------
+       ВИДАЛЯЄМО СТАРУ КАРТИНКУ ЕЛЛІ
+       ----------------------------------------- */
+
+    if (ellyImg) {
+
+        ellyImg.remove();
+
+        ellyImg = null;
+
+    }
+
+    const existingElly =
+        document.querySelector(
+            "#grounding-elly-js"
+        );
+
+    if (existingElly) {
+
+        existingElly.remove();
+
+    }
+
+
+    groundingActions.classList.remove(
+        "is-hidden"
+    );
+}
+
+
 /*
    Повернення на головний екран
 */
@@ -479,6 +599,8 @@ function hideActivityBack() {
 function handleActivityBack() {
 
     hideActivityBack();
+
+    resetGrounding();
 
     activityOptions.classList.remove(
         "is-visible"
@@ -1955,25 +2077,6 @@ function initGroundingChoices() {
                         );
 
 
-                        startEllyBlinking(
-                            "#grounding-elly-js",
-
-                            "images/elly/elly_lag.webp",
-
-                            "images/elly/elly_lag1.webp",
-
-                            [
-                                2000,
-                                5000,
-                                8000,
-                                12000,
-                                15400,
-                                17500,
-                                20500
-                            ]
-                        );
-
-
                         groundingInstruction.textContent =
                             "";
 
@@ -1990,6 +2093,24 @@ function initGroundingChoices() {
 
                             showActivityOptions(
                                 groundingContent
+                            );
+
+                            startEllyBlinking(
+                                "#grounding-elly-js",
+
+                                "images/elly/elly_lag.webp",
+
+                                "images/elly/elly_lag1.webp",
+
+                                [
+                                    800,
+                                    3800,
+                                    6800,
+                                    10800,
+                                    14200,
+                                    17800,
+                                    20800
+                                ]
                             );
 
                         }, 1800);
