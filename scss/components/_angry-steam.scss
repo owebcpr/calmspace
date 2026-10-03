@@ -1,0 +1,389 @@
+/* ==========================================
+   ANGRY STEAM
+   Екран гри «Випусти пару»
+========================================== */
+
+.angry-steam {
+    display: none;
+    width: 100%;
+    padding: var(--space-6) var(--space-6) var(--space-4);
+    background-image: url("../../images/bg_grounding.webp");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: var(--radius-lg);
+
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    touch-action: none;
+
+    &.is-active {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 640px;
+        gap: var(--space-3);
+        text-align: center;
+        padding-top: var(--space-4);
+    }
+
+    &__title {
+        color: var(--text-primary);
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-semibold);
+        max-width: 640px;
+    }
+
+    /* ==========================================
+       Сцена: Еллі + шарики + димка
+    ========================================== */
+
+    &__stage {
+        position: relative;
+        width: 100%;
+        max-width: 340px;      
+        height: 260px;         
+
+        margin-inline: auto;
+        overflow: hidden;
+
+        user-select: none;
+        touch-action: none;
+
+        transition: height 800ms ease;
+
+        &.is-final {
+            height: 220px;
+        }
+    }
+
+    /* ───── Димка на фоні (анімація) ───── */
+
+    &__fog {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+    &__fog-blob {
+        position: absolute;
+        display: block;
+        border-radius: 50%;
+        background: radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.55) 0%,
+            rgba(200, 220, 235, 0.25) 40%,
+            transparent 70%
+        );
+        filter: blur(14px);
+        opacity: 0.7;
+        pointer-events: none;
+    }
+
+    &__fog-blob--1 {
+        width: 120px;
+        height: 120px;
+        left: 5%;
+        top: 55%;
+        animation: steam-fog-drift-1 14s ease-in-out infinite;
+    }
+
+    &__fog-blob--2 {
+        width: 160px;
+        height: 160px;
+        right: 0;
+        top: 30%;
+        animation: steam-fog-drift-2 18s ease-in-out infinite;
+    }
+
+    &__fog-blob--3 {
+        width: 100px;
+        height: 100px;
+        left: 30%;
+        bottom: 10%;
+        animation: steam-fog-drift-3 16s ease-in-out infinite;
+    }
+
+    &__fog-blob--4 {
+        width: 140px;
+        height: 140px;
+        right: 25%;
+        top: 5%;
+        animation: steam-fog-drift-4 20s ease-in-out infinite;
+    }
+
+    /* Обгортка елементів під час гри — зникає у фіналі */
+    &__live-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-2);
+
+        opacity: 1;
+        transition: opacity 400ms ease;
+
+        &.is-hidden {
+            opacity: 0;
+            pointer-events: none;
+            height: 0;
+            overflow: hidden;
+            margin: 0;
+        }
+    }
+
+    /* Питання у фіналі */
+    &__question {
+        max-width: 520px;
+        color: var(--text-primary);
+        font-size: var(--font-size-lg);
+        line-height: 1.5;
+    }
+
+    &__summary {
+        max-width: 520px;
+        margin: 0;
+        color: var(--text-primary);
+        font-size: var(--font-size-lg);
+        line-height: 1.5;
+        text-align: center;
+
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+            opacity 700ms ease,
+            transform 700ms ease;
+
+        &.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes steam-fog-drift-1 {
+        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+        50%      { transform: translate(20px, -25px) scale(1.15); opacity: 0.8; }
+    }
+    @keyframes steam-fog-drift-2 {
+        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+        50%      { transform: translate(-25px, 20px) scale(1.2); opacity: 0.85; }
+    }
+    @keyframes steam-fog-drift-3 {
+        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
+        50%      { transform: translate(15px, -20px) scale(1.1); opacity: 0.75; }
+    }
+    @keyframes steam-fog-drift-4 {
+        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+        50%      { transform: translate(-20px, 15px) scale(1.15); opacity: 0.7; }
+    }
+
+    /* ───── Еллі ───── */
+
+    &__elly {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        transition: transform 800ms ease;
+
+        &.is-raised {
+            transform: translateY(-40px);
+    }
+    }
+
+    &__elly-image {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: 300px;
+        height: 250px;
+        object-fit: contain;
+        transition: opacity 600ms ease;
+        pointer-events: none;
+    }
+
+    &__elly-image--full-steam { opacity: 1; }
+    &__elly-image--some-steam { opacity: 0; }
+    &__elly-image--calm       { opacity: 0; }
+    &__elly-image--blink      { opacity: 0; }
+
+    /* ───── Поле для шариків ───── */
+
+    &__balloons {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    /* ───── Шарик ───── */
+
+    .balloon {
+        position: absolute;
+        display: block;
+        border-radius: 50%;
+        pointer-events: auto;
+        cursor: pointer;
+
+        box-shadow:
+            0 4px 14px rgba(120, 140, 170, 0.18),
+            inset -6px -8px 20px rgba(255, 255, 255, 0.6),
+            inset 4px 6px 14px rgba(180, 200, 220, 0.35);
+
+        overflow: hidden;
+
+        will-change: transform;
+        transform: translateY(0);
+    }
+
+    .balloon::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background:
+            radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.7) 0%, transparent 45%),
+            radial-gradient(circle at 70% 65%, rgba(255, 255, 255, 0.5) 0%, transparent 40%),
+            radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.35) 0%, transparent 60%);
+        filter: blur(1px);
+        pointer-events: none;
+    }
+
+    /* Кольорові варіанти (пастель) */
+    .balloon--lilac   { background: radial-gradient(circle at 35% 35%, #E0D4F0 0%, #C9B5E2 60%, #B8A0D4 100%); }
+    .balloon--blue    { background: radial-gradient(circle at 35% 35%, #D4E4F4 0%, #B5CFE8 60%, #A0BEDC 100%); }
+    .balloon--pink    { background: radial-gradient(circle at 35% 35%, #F4D4E0 0%, #E8B5C9 60%, #DCA0B8 100%); }
+    .balloon--sand    { background: radial-gradient(circle at 35% 35%, #F4E8D4 0%, #E8D5B5 60%, #DCC8A0 100%); }
+    .balloon--mint    { background: radial-gradient(circle at 35% 35%, #D4F0E4 0%, #B5E2CF 60%, #A0D4BE 100%); }
+    .balloon--peach   { background: radial-gradient(circle at 35% 35%, #F4E0D4 0%, #E8C4B5 60%, #DCAFA0 100%); }
+
+    /* ───── Лічильник ───── */
+
+    &__counter {
+        color: var(--text-secondary);
+        font-size: var(--font-size-md);
+    }
+
+    /* ───── Підказка Еллі ───── */
+
+    &__hint {
+        max-width: 520px;
+        margin: 0;
+        padding: 0;
+
+        color: var(--text-secondary);
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-regular);
+        line-height: 1.5;
+        text-align: center;
+
+        /* Плавна поява */
+        opacity: 0;
+        min-height: 0;
+        height: 0;
+        overflow: hidden;
+        transition:
+            opacity 400ms ease,
+            height 400ms ease,
+            margin 400ms ease;
+    }
+
+    &__hint.is-visible {
+        opacity: 1;
+        min-height: 1.5em;
+        height: auto;
+        margin-bottom: var(--space-2);
+    }
+
+    /* ───── Таймер ───── */
+
+    &__timer {
+        color: var(--text-secondary);
+        font-size: var(--font-size-sm);
+    }
+
+    /* ───── Фінальний блок ───── */
+
+    &__finish {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-3);
+
+        opacity: 0;
+        transform: translateY(20px);
+
+        transition:
+            opacity 800ms ease,
+            transform 800ms ease;
+
+        &.is-visible {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    &__thanks {
+        max-width: 520px;
+        color: var(--text-primary);
+        font-size: var(--font-size-lg);
+        line-height: 1.5;
+    }
+
+    &__choices {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+        width: 100%;
+        max-width: 320px;
+    }
+
+    &__choice {
+        width: 100%;
+        min-height: 52px;
+        padding: var(--space-3) var(--space-4);
+
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+
+        font-family: var(--font-family);
+        font-size: var(--font-size-md);
+        font-weight: var(--font-weight-medium);
+
+        cursor: pointer;
+
+        transition:
+            background-color var(--transition-fast),
+            border-color var(--transition-fast),
+            transform var(--transition-fast),
+            box-shadow var(--transition-fast);
+
+        &:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 3px;
+        }
+    }
+}

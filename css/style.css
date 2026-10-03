@@ -92,6 +92,76 @@ ol {
   list-style: none;
 }
 
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-Black.woff2") format("woff2"), url("../fonts/Onest-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-Bold.woff2") format("woff2"), url("../fonts/Onest-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-ExtraBold.woff2") format("woff2"), url("../fonts/Onest-ExtraBold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-ExtraLight.woff2") format("woff2"), url("../fonts/Onest-ExtraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-Light.woff2") format("woff2"), url("../fonts/Onest-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-Medium.woff2") format("woff2"), url("../fonts/Onest-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-Regular.woff2") format("woff2"), url("../fonts/Onest-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-SemiBold.woff2") format("woff2"), url("../fonts/Onest-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-Thin.woff2") format("woff2"), url("../fonts/Onest-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-Regular_1.woff2") format("woff2"), url("../fonts/Onest-Regular_1.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 /* ==========================================
    BASE
    Базові стилі проєкту
@@ -1107,6 +1177,7 @@ BREATHING
   display: flex;
 }
 .grounding__content {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1117,12 +1188,20 @@ BREATHING
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: var(--space-5);
   width: 100%;
   max-width: 640px;
+  gap: var(--space-5);
 }
-.grounding__content .activity-options {
-  margin-top: -50px;
+.grounding .grounding .grounding__content .activity-options {
+  position: static;
+  width: 100%;
+  margin: 0;
+  -webkit-transform: translateY(15px);
+          transform: translateY(15px);
+}
+.grounding .grounding .grounding__content .activity-options.is-visible {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 .grounding__title {
   max-width: 560px;
@@ -1290,6 +1369,9 @@ BREATHING
 .grounding__elly {
   width: 300px;
   height: auto;
+  aspect-ratio: 8/7;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .grounding__scene {
   display: none;
@@ -1777,7 +1859,7 @@ BREATHING
           perspective: 1000px;
   display: none;
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 120px);
   background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.45), transparent 55%), linear-gradient(145deg, #f4f0f7, #eef3f1);
   -webkit-transition: background 1200ms ease, opacity 500ms ease;
   transition: background 1200ms ease, opacity 500ms ease;
@@ -1793,7 +1875,6 @@ BREATHING
 }
 .sad__content {
   width: min(100% - 32px, 720px);
-  min-height: 100vh;
   margin-inline: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2089,4 +2170,1211 @@ BREATHING
     -webkit-transform: translate(-50%, -50%) translateZ(1100px) scale(0.05) rotate(12deg);
             transform: translate(-50%, -50%) translateZ(1100px) scale(0.05) rotate(12deg);
   }
+}
+/* ==========================================
+   ANGRY
+   Екран «Я злюся»
+========================================== */
+.angry {
+  position: relative;
+  display: none;
+  width: 100%;
+  min-height: calc(100vh - 120px);
+  background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.45), transparent 55%), linear-gradient(145deg, #f7f1ed, #eef3f1);
+  -webkit-transition: background 1200ms ease, opacity 500ms ease;
+  transition: background 1200ms ease, opacity 500ms ease;
+  opacity: 0;
+}
+.angry.is-active {
+  display: block;
+  opacity: 1;
+}
+.angry[aria-hidden=false] {
+  display: block;
+  opacity: 1;
+}
+.angry {
+  /* ==========================================
+     Контент
+  ========================================== */
+}
+.angry__content {
+  width: min(100% - 32px, 720px);
+  margin-inline: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-block: 24px 40px;
+  text-align: center;
+}
+.angry {
+  /* ==========================================
+     Репліка Еллі
+  ========================================== */
+}
+.angry__title {
+  max-width: 620px;
+  min-height: 2.4em;
+  margin: 0 0 16px;
+  text-align: center;
+  color: var(--text-primary);
+  -webkit-transition: opacity 400ms ease, -webkit-transform 400ms ease;
+  transition: opacity 400ms ease, -webkit-transform 400ms ease;
+  transition: opacity 400ms ease, transform 400ms ease;
+  transition: opacity 400ms ease, transform 400ms ease, -webkit-transform 400ms ease;
+}
+.angry {
+  /* ==========================================
+     Образ Еллі
+  ========================================== */
+}
+.angry__elly {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  min-height: 260px;
+  margin-bottom: 16px;
+  -webkit-transition: -webkit-transform 800ms ease;
+  transition: -webkit-transform 800ms ease;
+  transition: transform 800ms ease;
+  transition: transform 800ms ease, -webkit-transform 800ms ease;
+}
+.angry__elly.is-raised {
+  -webkit-transform: translateY(-50px);
+          transform: translateY(-50px);
+}
+.angry__elly-image {
+  display: block;
+  width: auto;
+  height: 260px;
+  max-width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -webkit-transition: opacity 800ms ease, -webkit-transform 800ms ease;
+  transition: opacity 800ms ease, -webkit-transform 800ms ease;
+  transition: opacity 800ms ease, transform 800ms ease;
+  transition: opacity 800ms ease, transform 800ms ease, -webkit-transform 800ms ease;
+}
+.angry {
+  /* ==========================================
+     Ігри
+  ========================================== */
+}
+.angry__games {
+  width: 100%;
+  max-width: 640px;
+  margin-top: var(--space-4);
+}
+.angry__games-title {
+  margin: 0 0 var(--space-4);
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+}
+.angry__games-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+.angry {
+  /* ==========================================
+     Картка гри
+  ========================================== */
+}
+.angry__game {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: var(--space-2);
+  min-height: 140px;
+  padding: var(--space-4);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: border-color var(--transition-fast), background-color var(--transition-fast), -webkit-transform var(--transition-fast), -webkit-box-shadow var(--transition-fast);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), -webkit-transform var(--transition-fast), -webkit-box-shadow var(--transition-fast);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast), -webkit-transform var(--transition-fast), -webkit-box-shadow var(--transition-fast);
+}
+.angry__game:hover {
+  -webkit-transform: translateY(-4px);
+          transform: translateY(-4px);
+  -webkit-box-shadow: var(--shadow-md);
+          box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+}
+.angry__game:active {
+  -webkit-transform: scale(0.98);
+          transform: scale(0.98);
+}
+.angry__game:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+.angry__game {
+  /* Окремі акценти для кожної гри */
+}
+.angry__game[data-angry-game=cloud] {
+  background: linear-gradient(160deg, #eef6ff, #ffffff);
+}
+.angry__game[data-angry-game=steam] {
+  background: linear-gradient(160deg, #fff1ec, #ffffff);
+}
+.angry__game[data-angry-game=calm] {
+  background: linear-gradient(160deg, #f2f9f0, #ffffff);
+}
+.angry__game-icon {
+  font-size: 40px;
+  line-height: 1;
+  -webkit-transition: -webkit-transform var(--transition-base);
+  transition: -webkit-transform var(--transition-base);
+  transition: transform var(--transition-base);
+  transition: transform var(--transition-base), -webkit-transform var(--transition-base);
+}
+.angry__game:hover .angry__game-icon {
+  -webkit-transform: scale(1.12) rotate(-4deg);
+          transform: scale(1.12) rotate(-4deg);
+}
+.angry__game-title {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+}
+.angry__game-text {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+}
+.angry {
+  /* ==========================================
+     Планшет
+  ========================================== */
+}
+@media (min-width: 768px) {
+  .angry__content {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .angry__games-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .angry__game {
+    min-height: 160px;
+  }
+}
+
+/* ==========================================
+   ANGRY FINAL
+   Фінальний екран після ігор
+========================================== */
+.angry-final {
+  display: none;
+  width: 100%;
+  padding: var(--space-6);
+  background-image: url("../../images/bg_grounding.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: var(--radius-lg);
+}
+.angry-final.is-active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.angry-final__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  max-width: 640px;
+  gap: var(--space-5);
+  text-align: center;
+  padding-block: var(--space-6);
+}
+.angry-final__title {
+  max-width: 520px;
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+}
+.angry-final__elly {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 300px;
+  height: 250px;
+  margin-inline: auto;
+}
+.angry-final__elly-image {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 300px;
+  height: 250px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -webkit-transition: opacity 250ms ease;
+  transition: opacity 250ms ease;
+}
+.angry-final__elly-image--blink {
+  opacity: 0;
+}
+
+/* ==========================================
+   ANGRY GAME
+   Екран гри «Розплутай нитки»
+========================================== */
+.angry-game {
+  display: none;
+  width: 100%;
+  padding: var(--space-6);
+  background-image: url("../../images/bg_grounding.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: var(--radius-lg);
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -ms-touch-action: none;
+      touch-action: none;
+}
+.angry-game.is-active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.angry-game__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  max-width: 640px;
+  gap: var(--space-5);
+  text-align: center;
+  padding-top: var(--space-4);
+}
+.angry-game__title {
+  color: var(--text-primary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+.angry-game {
+  /* ==========================================
+     Сцена: Еллі + нитки
+  ========================================== */
+}
+.angry-game__stage {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  height: 250px; /* ← фиксированная высота, без aspect-ratio */
+  margin-inline: auto;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -ms-touch-action: none;
+      touch-action: none;
+}
+.angry-game__elly {
+  position: absolute;
+  inset: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: -webkit-transform 800ms ease;
+  transition: -webkit-transform 800ms ease;
+  transition: transform 800ms ease;
+  transition: transform 800ms ease, -webkit-transform 800ms ease;
+}
+.angry-game__elly.is-raised {
+  -webkit-transform: translateY(-25px);
+          transform: translateY(-25px);
+}
+.angry-game__elly-image {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 300px;
+  height: 250px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -webkit-transition: opacity 800ms ease;
+  transition: opacity 800ms ease;
+}
+.angry-game__elly-image--angry {
+  opacity: 1;
+}
+.angry-game__elly-image--half-calm {
+  opacity: 0;
+}
+.angry-game__elly-image--calm {
+  opacity: 0;
+}
+.angry-game__elly-image--blink {
+  opacity: 0;
+}
+.angry-game__threads {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.angry-game__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -ms-touch-action: none;
+      touch-action: none;
+}
+.angry-game {
+  /* ==========================================
+     Нитки
+  ========================================== */
+}
+.angry-game .thread {
+  pointer-events: none;
+}
+.angry-game .thread .thread__glow {
+  pointer-events: none;
+}
+.angry-game .thread:not(.is-active):not(.is-calm) {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.angry-game .thread.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.angry-game .thread.is-active .thread__knot {
+  -webkit-animation: knot-pulse 1.6s ease-in-out infinite;
+          animation: knot-pulse 1.6s ease-in-out infinite;
+}
+.angry-game .thread.is-active.is-trembling {
+  -webkit-animation: thread-tremble 1.6s ease-in-out infinite;
+          animation: thread-tremble 1.6s ease-in-out infinite;
+}
+.angry-game .thread.is-active .thread__line {
+  pointer-events: stroke;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.angry-game .thread.is-active .thread__line:active {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+.angry-game .thread.is-calming {
+  -webkit-animation: none;
+          animation: none;
+}
+.angry-game .thread.is-calming .thread__knot {
+  -webkit-animation: none;
+          animation: none;
+}
+.angry-game .thread.is-calm {
+  -webkit-animation: none;
+          animation: none;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: opacity 800ms ease, -webkit-transform 800ms ease;
+  transition: opacity 800ms ease, -webkit-transform 800ms ease;
+  transition: opacity 800ms ease, transform 800ms ease;
+  transition: opacity 800ms ease, transform 800ms ease, -webkit-transform 800ms ease;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+.angry-game .thread.is-calm .thread__knot {
+  -webkit-animation: none;
+          animation: none;
+}
+.angry-game .thread.is-jerking {
+  -webkit-animation: thread-jerk 220ms ease-out;
+          animation: thread-jerk 220ms ease-out;
+}
+.angry-game .thread__line {
+  -webkit-transition: stroke 250ms ease, opacity 400ms ease;
+  transition: stroke 250ms ease, opacity 400ms ease;
+  -webkit-filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+          filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -ms-touch-action: none;
+      touch-action: none;
+}
+.angry-game .thread__knot {
+  pointer-events: all;
+  cursor: pointer;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  transform-box: fill-box;
+  -webkit-transition: opacity 400ms ease, -webkit-transform 300ms ease;
+  transition: opacity 400ms ease, -webkit-transform 300ms ease;
+  transition: transform 300ms ease, opacity 400ms ease;
+  transition: transform 300ms ease, opacity 400ms ease, -webkit-transform 300ms ease;
+  -webkit-filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+          filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+}
+.angry-game .thread__knot:hover {
+  -webkit-transform: scale(1.15);
+          transform: scale(1.15);
+}
+.angry-game .thread__knot {
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+}
+@-webkit-keyframes knot-pulse {
+  0%, 100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+}
+@keyframes knot-pulse {
+  0%, 100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+}
+@-webkit-keyframes thread-tremble {
+  0%, 100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  25% {
+    -webkit-transform: translate(0.8px, -0.6px);
+            transform: translate(0.8px, -0.6px);
+  }
+  50% {
+    -webkit-transform: translate(-0.6px, 0.4px);
+            transform: translate(-0.6px, 0.4px);
+  }
+  75% {
+    -webkit-transform: translate(0.4px, 0.6px);
+            transform: translate(0.4px, 0.6px);
+  }
+}
+@keyframes thread-tremble {
+  0%, 100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  25% {
+    -webkit-transform: translate(0.8px, -0.6px);
+            transform: translate(0.8px, -0.6px);
+  }
+  50% {
+    -webkit-transform: translate(-0.6px, 0.4px);
+            transform: translate(-0.6px, 0.4px);
+  }
+  75% {
+    -webkit-transform: translate(0.4px, 0.6px);
+            transform: translate(0.4px, 0.6px);
+  }
+}
+@-webkit-keyframes thread-jerk {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  40% {
+    -webkit-transform: translate(3px, -2px);
+            transform: translate(3px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+@keyframes thread-jerk {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  40% {
+    -webkit-transform: translate(3px, -2px);
+            transform: translate(3px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+.angry-game {
+  /* ==========================================
+     Лічильник ниток
+  ========================================== */
+}
+.angry-game__counter {
+  color: var(--text-secondary);
+  font-size: var(--font-size-md);
+}
+.angry-game {
+  /* ==========================================
+     Фінальний блок
+  ========================================== */
+}
+.angry-game__finish {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: var(--space-4);
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+  -webkit-transition: opacity 800ms ease, -webkit-transform 800ms ease;
+  transition: opacity 800ms ease, -webkit-transform 800ms ease;
+  transition: opacity 800ms ease, transform 800ms ease;
+  transition: opacity 800ms ease, transform 800ms ease, -webkit-transform 800ms ease;
+}
+.angry-game__finish.is-visible {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  opacity: 1;
+  -webkit-transform: translateY(-40px);
+          transform: translateY(-40px);
+}
+.angry-game__thanks {
+  max-width: 520px;
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+  line-height: 1.5;
+}
+.angry-game__choices {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 320px;
+}
+.angry-game__choice {
+  width: 100%;
+  min-height: 52px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  -webkit-transition: background-color var(--transition-fast), border-color var(--transition-fast), -webkit-transform var(--transition-fast), -webkit-box-shadow var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), -webkit-transform var(--transition-fast), -webkit-box-shadow var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), -webkit-transform var(--transition-fast), -webkit-box-shadow var(--transition-fast);
+}
+.angry-game__choice:hover {
+  border-color: var(--color-primary);
+  -webkit-box-shadow: var(--shadow-sm);
+          box-shadow: var(--shadow-sm);
+}
+.angry-game__choice:active {
+  -webkit-transform: scale(0.98);
+          transform: scale(0.98);
+}
+.angry-game__choice:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   ANGRY STEAM
+   Екран гри «Випусти пару»
+========================================== */
+.angry-steam {
+  display: none;
+  width: 100%;
+  padding: var(--space-6) var(--space-6) var(--space-4);
+  background-image: url("../../images/bg_grounding.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: var(--radius-lg);
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -ms-touch-action: none;
+      touch-action: none;
+}
+.angry-steam.is-active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.angry-steam__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  max-width: 640px;
+  gap: var(--space-3);
+  text-align: center;
+  padding-top: var(--space-4);
+}
+.angry-steam__title {
+  color: var(--text-primary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  max-width: 640px;
+}
+.angry-steam {
+  /* ==========================================
+     Сцена: Еллі + шарики + димка
+  ========================================== */
+}
+.angry-steam__stage {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  height: 260px;
+  margin-inline: auto;
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -ms-touch-action: none;
+      touch-action: none;
+  -webkit-transition: height 800ms ease;
+  transition: height 800ms ease;
+}
+.angry-steam__stage.is-final {
+  height: 220px;
+}
+.angry-steam {
+  /* ───── Димка на фоні (анімація) ───── */
+}
+.angry-steam__fog {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.angry-steam__fog-blob {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.55) 0%, rgba(200, 220, 235, 0.25) 40%, transparent 70%);
+  -webkit-filter: blur(14px);
+          filter: blur(14px);
+  opacity: 0.7;
+  pointer-events: none;
+}
+.angry-steam__fog-blob--1 {
+  width: 120px;
+  height: 120px;
+  left: 5%;
+  top: 55%;
+  -webkit-animation: steam-fog-drift-1 14s ease-in-out infinite;
+          animation: steam-fog-drift-1 14s ease-in-out infinite;
+}
+.angry-steam__fog-blob--2 {
+  width: 160px;
+  height: 160px;
+  right: 0;
+  top: 30%;
+  -webkit-animation: steam-fog-drift-2 18s ease-in-out infinite;
+          animation: steam-fog-drift-2 18s ease-in-out infinite;
+}
+.angry-steam__fog-blob--3 {
+  width: 100px;
+  height: 100px;
+  left: 30%;
+  bottom: 10%;
+  -webkit-animation: steam-fog-drift-3 16s ease-in-out infinite;
+          animation: steam-fog-drift-3 16s ease-in-out infinite;
+}
+.angry-steam__fog-blob--4 {
+  width: 140px;
+  height: 140px;
+  right: 25%;
+  top: 5%;
+  -webkit-animation: steam-fog-drift-4 20s ease-in-out infinite;
+          animation: steam-fog-drift-4 20s ease-in-out infinite;
+}
+.angry-steam {
+  /* Обгортка елементів під час гри — зникає у фіналі */
+}
+.angry-steam__live-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: var(--space-2);
+  opacity: 1;
+  -webkit-transition: opacity 400ms ease;
+  transition: opacity 400ms ease;
+}
+.angry-steam__live-info.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+}
+.angry-steam {
+  /* Питання у фіналі */
+}
+.angry-steam__question {
+  max-width: 520px;
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+  line-height: 1.5;
+}
+.angry-steam__summary {
+  max-width: 520px;
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+  line-height: 1.5;
+  text-align: center;
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+  -webkit-transition: opacity 700ms ease, -webkit-transform 700ms ease;
+  transition: opacity 700ms ease, -webkit-transform 700ms ease;
+  transition: opacity 700ms ease, transform 700ms ease;
+  transition: opacity 700ms ease, transform 700ms ease, -webkit-transform 700ms ease;
+}
+.angry-steam__summary.is-visible {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+@-webkit-keyframes steam-fog-drift-1 {
+  0%, 100% {
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    -webkit-transform: translate(20px, -25px) scale(1.15);
+            transform: translate(20px, -25px) scale(1.15);
+    opacity: 0.8;
+  }
+}
+@keyframes steam-fog-drift-1 {
+  0%, 100% {
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    -webkit-transform: translate(20px, -25px) scale(1.15);
+            transform: translate(20px, -25px) scale(1.15);
+    opacity: 0.8;
+  }
+}
+@-webkit-keyframes steam-fog-drift-2 {
+  0%, 100% {
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    -webkit-transform: translate(-25px, 20px) scale(1.2);
+            transform: translate(-25px, 20px) scale(1.2);
+    opacity: 0.85;
+  }
+}
+@keyframes steam-fog-drift-2 {
+  0%, 100% {
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    -webkit-transform: translate(-25px, 20px) scale(1.2);
+            transform: translate(-25px, 20px) scale(1.2);
+    opacity: 0.85;
+  }
+}
+@-webkit-keyframes steam-fog-drift-3 {
+  0%, 100% {
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    -webkit-transform: translate(15px, -20px) scale(1.1);
+            transform: translate(15px, -20px) scale(1.1);
+    opacity: 0.75;
+  }
+}
+@keyframes steam-fog-drift-3 {
+  0%, 100% {
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    -webkit-transform: translate(15px, -20px) scale(1.1);
+            transform: translate(15px, -20px) scale(1.1);
+    opacity: 0.75;
+  }
+}
+@-webkit-keyframes steam-fog-drift-4 {
+  0%, 100% {
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    -webkit-transform: translate(-20px, 15px) scale(1.15);
+            transform: translate(-20px, 15px) scale(1.15);
+    opacity: 0.7;
+  }
+}
+@keyframes steam-fog-drift-4 {
+  0%, 100% {
+    -webkit-transform: translate(0, 0) scale(1);
+            transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    -webkit-transform: translate(-20px, 15px) scale(1.15);
+            transform: translate(-20px, 15px) scale(1.15);
+    opacity: 0.7;
+  }
+}
+.angry-steam {
+  /* ───── Еллі ───── */
+}
+.angry-steam__elly {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  pointer-events: none;
+  -webkit-transition: -webkit-transform 800ms ease;
+  transition: -webkit-transform 800ms ease;
+  transition: transform 800ms ease;
+  transition: transform 800ms ease, -webkit-transform 800ms ease;
+}
+.angry-steam__elly.is-raised {
+  -webkit-transform: translateY(-40px);
+          transform: translateY(-40px);
+}
+.angry-steam__elly-image {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 300px;
+  height: 250px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -webkit-transition: opacity 600ms ease;
+  transition: opacity 600ms ease;
+  pointer-events: none;
+}
+.angry-steam__elly-image--full-steam {
+  opacity: 1;
+}
+.angry-steam__elly-image--some-steam {
+  opacity: 0;
+}
+.angry-steam__elly-image--calm {
+  opacity: 0;
+}
+.angry-steam__elly-image--blink {
+  opacity: 0;
+}
+.angry-steam {
+  /* ───── Поле для шариків ───── */
+}
+.angry-steam__balloons {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.angry-steam {
+  /* ───── Шарик ───── */
+}
+.angry-steam .balloon {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  pointer-events: auto;
+  cursor: pointer;
+  -webkit-box-shadow: 0 4px 14px rgba(120, 140, 170, 0.18), inset -6px -8px 20px rgba(255, 255, 255, 0.6), inset 4px 6px 14px rgba(180, 200, 220, 0.35);
+          box-shadow: 0 4px 14px rgba(120, 140, 170, 0.18), inset -6px -8px 20px rgba(255, 255, 255, 0.6), inset 4px 6px 14px rgba(180, 200, 220, 0.35);
+  overflow: hidden;
+  will-change: transform;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+.angry-steam .balloon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.7) 0%, transparent 45%), radial-gradient(circle at 70% 65%, rgba(255, 255, 255, 0.5) 0%, transparent 40%), radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.35) 0%, transparent 60%);
+  -webkit-filter: blur(1px);
+          filter: blur(1px);
+  pointer-events: none;
+}
+.angry-steam {
+  /* Кольорові варіанти (пастель) */
+}
+.angry-steam .balloon--lilac {
+  background: radial-gradient(circle at 35% 35%, #E0D4F0 0%, #C9B5E2 60%, #B8A0D4 100%);
+}
+.angry-steam .balloon--blue {
+  background: radial-gradient(circle at 35% 35%, #D4E4F4 0%, #B5CFE8 60%, #A0BEDC 100%);
+}
+.angry-steam .balloon--pink {
+  background: radial-gradient(circle at 35% 35%, #F4D4E0 0%, #E8B5C9 60%, #DCA0B8 100%);
+}
+.angry-steam .balloon--sand {
+  background: radial-gradient(circle at 35% 35%, #F4E8D4 0%, #E8D5B5 60%, #DCC8A0 100%);
+}
+.angry-steam .balloon--mint {
+  background: radial-gradient(circle at 35% 35%, #D4F0E4 0%, #B5E2CF 60%, #A0D4BE 100%);
+}
+.angry-steam .balloon--peach {
+  background: radial-gradient(circle at 35% 35%, #F4E0D4 0%, #E8C4B5 60%, #DCAFA0 100%);
+}
+.angry-steam {
+  /* ───── Лічильник ───── */
+}
+.angry-steam__counter {
+  color: var(--text-secondary);
+  font-size: var(--font-size-md);
+}
+.angry-steam {
+  /* ───── Підказка Еллі ───── */
+}
+.angry-steam__hint {
+  max-width: 520px;
+  margin: 0;
+  padding: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+  text-align: center;
+  /* Плавна поява */
+  opacity: 0;
+  min-height: 0;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: opacity 400ms ease, height 400ms ease, margin 400ms ease;
+  transition: opacity 400ms ease, height 400ms ease, margin 400ms ease;
+}
+.angry-steam__hint.is-visible {
+  opacity: 1;
+  min-height: 1.5em;
+  height: auto;
+  margin-bottom: var(--space-2);
+}
+.angry-steam {
+  /* ───── Таймер ───── */
+}
+.angry-steam__timer {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+.angry-steam {
+  /* ───── Фінальний блок ───── */
+}
+.angry-steam__finish {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: var(--space-3);
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+  -webkit-transition: opacity 800ms ease, -webkit-transform 800ms ease;
+  transition: opacity 800ms ease, -webkit-transform 800ms ease;
+  transition: opacity 800ms ease, transform 800ms ease;
+  transition: opacity 800ms ease, transform 800ms ease, -webkit-transform 800ms ease;
+}
+.angry-steam__finish.is-visible {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+.angry-steam__thanks {
+  max-width: 520px;
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+  line-height: 1.5;
+}
+.angry-steam__choices {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 320px;
+}
+.angry-steam__choice {
+  width: 100%;
+  min-height: 52px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  -webkit-transition: background-color var(--transition-fast), border-color var(--transition-fast), -webkit-transform var(--transition-fast), -webkit-box-shadow var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), -webkit-transform var(--transition-fast), -webkit-box-shadow var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), -webkit-transform var(--transition-fast), -webkit-box-shadow var(--transition-fast);
+}
+.angry-steam__choice:hover {
+  border-color: var(--color-primary);
+  -webkit-box-shadow: var(--shadow-sm);
+          box-shadow: var(--shadow-sm);
+}
+.angry-steam__choice:active {
+  -webkit-transform: scale(0.98);
+          transform: scale(0.98);
+}
+.angry-steam__choice:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
 }/*# sourceMappingURL=style.css.map */

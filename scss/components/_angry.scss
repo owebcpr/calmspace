@@ -1,0 +1,317 @@
+/* ==========================================
+   ANGRY
+   Екран «Я злюся»
+========================================== */
+
+.angry {
+    position: relative;
+
+    display: none;
+
+    width: 100%;
+    min-height: calc(100vh - 120px);
+
+    background:
+        radial-gradient(circle at 50% 20%,
+            rgb(255 255 255 / 45%),
+            transparent 55%),
+        linear-gradient(145deg,
+            #f7f1ed,
+            #eef3f1);
+
+    transition:
+        background 1200ms ease,
+        opacity 500ms ease;
+
+    opacity: 0;
+
+    &.is-active {
+        display: block;
+        opacity: 1;
+    }
+
+    &[aria-hidden="false"] {
+        display: block;
+        opacity: 1;
+    }
+
+    /* ==========================================
+       Контент
+    ========================================== */
+
+    &__content {
+        width: min(100% - 32px, 720px);
+
+        margin-inline: auto;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding-block: 24px 40px;
+
+        text-align: center;
+    }
+
+    /* ==========================================
+       Репліка Еллі
+    ========================================== */
+
+    &__title {
+        max-width: 620px;
+        min-height: 2.4em;
+
+        margin: 0 0 16px;
+
+        text-align: center;
+
+        color: var(--text-primary);
+
+        transition:
+            opacity 400ms ease,
+            transform 400ms ease;
+    }
+
+    /* ==========================================
+       Образ Еллі
+    ========================================== */
+
+    &__elly {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        min-height: 260px;
+
+        margin-bottom: 16px;
+
+        transition: transform 800ms ease;
+
+        &.is-raised {
+            transform: translateY(-50px);
+        }
+    }
+
+    &__elly-image {
+        display: block;
+
+        width: auto;
+        height: 260px;
+
+        max-width: 100%;
+
+        object-fit: contain;
+
+        transition:
+            opacity 800ms ease,
+            transform 800ms ease;
+    }
+
+    
+    /* ==========================================
+       Ігри
+    ========================================== */
+
+    &__games {
+        width: 100%;
+        max-width: 640px;
+
+        margin-top: var(--space-4);
+    }
+
+    &__games-title {
+        margin: 0 0 var(--space-4);
+
+        color: var(--text-primary);
+
+        font-size: var(--font-size-md);
+        font-weight: var(--font-weight-medium);
+
+        text-align: center;
+    }
+
+    &__games-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+
+    /* ==========================================
+       Картка гри
+    ========================================== */
+
+    &__game {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        gap: var(--space-2);
+
+        min-height: 140px;
+        padding: var(--space-4);
+
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+
+        font-family: var(--font-family);
+        text-align: center;
+
+        cursor: pointer;
+
+        transition:
+            transform var(--transition-fast),
+            box-shadow var(--transition-fast),
+            border-color var(--transition-fast),
+            background-color var(--transition-fast);
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-primary);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+
+        &:focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 3px;
+        }
+
+        /* Окремі акценти для кожної гри */
+        &[data-angry-game="cloud"] {
+            background: linear-gradient(160deg, #eef6ff, #ffffff);
+        }
+
+        &[data-angry-game="steam"] {
+            background: linear-gradient(160deg, #fff1ec, #ffffff);
+        }
+
+        &[data-angry-game="calm"] {
+            background: linear-gradient(160deg, #f2f9f0, #ffffff);
+        }
+    }
+
+    &__game-icon {
+        font-size: 40px;
+        line-height: 1;
+
+        transition: transform var(--transition-base);
+    }
+
+    &__game:hover &__game-icon {
+        transform: scale(1.12) rotate(-4deg);
+    }
+
+    &__game-title {
+        margin: 0;
+
+        color: var(--text-primary);
+
+        font-size: var(--font-size-md);
+        font-weight: var(--font-weight-semibold);
+    }
+
+    &__game-text {
+        margin: 0;
+
+        color: var(--text-secondary);
+
+        font-size: var(--font-size-sm);
+        line-height: 1.4;
+    }
+
+    /* ==========================================
+       Планшет
+    ========================================== */
+
+    @media (min-width: 768px) {
+
+        &__content {
+            justify-content: center;
+        }
+
+        &__games-list {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        &__game {
+            min-height: 160px;
+        }
+    }
+}
+
+/* ==========================================
+   ANGRY FINAL
+   Фінальний екран після ігор
+========================================== */
+
+.angry-final {
+    display: none;
+    width: 100%;
+    padding: var(--space-6);
+    background-image: url("../../images/bg_grounding.webp");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: var(--radius-lg);
+
+    &.is-active {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 640px;
+        gap: var(--space-5);
+        text-align: center;
+        padding-block: var(--space-6);
+    }
+
+    &__title {
+        max-width: 520px;
+        margin: 0;
+        color: var(--text-primary);
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-semibold);
+        line-height: 1.3;
+    }
+
+    &__elly {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 300px;
+        height: 250px;
+        margin-inline: auto;
+    }
+
+    &__elly-image {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+
+        width: 300px;
+        height: 250px;
+        object-fit: contain;
+
+        transition: opacity 250ms ease;
+    }
+
+    &__elly-image--blink {
+        opacity: 0;
+    }
+}

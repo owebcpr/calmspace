@@ -40,20 +40,15 @@
         gap: var(--space-5);
     }
 
-    .grounding__content .activity-options {
-        position: absolute;
-
-        top: calc(100% + var(--space-2));
-        left: 0;
-
+    .grounding .grounding__content .activity-options {
+        position: static;
         width: 100%;
         margin: 0;
-
-        transform: none;
+        transform: translateY(15px);
     }
 
-    .grounding__content .activity-options.is-visible {
-        transform: none;
+    .grounding .grounding__content .activity-options.is-visible {
+        transform: translateY(0);
     }
 
     &__title {
@@ -239,6 +234,8 @@
     &__elly {
         width: 300px;
         height: auto;
+        aspect-ratio: 8 / 7;
+        object-fit: contain;
     }
 
     &__scene {

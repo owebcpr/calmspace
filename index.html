@@ -93,7 +93,7 @@
                 </button>
 
                 <!-- Злість -->
-                <button class="state-card" type="button">
+                <button class="state-card" data-state="angry" type="button">
                     <div class="state-card__emoji state-card__emoji--angry" aria-hidden="true">
                     </div>
 
@@ -383,18 +383,10 @@
 
                 <div class="sad__elly">
 
-                    <img
-                        class="sad__elly-image sad__elly-image--current"
-                        src="images/elly/elly_sadly1.webp"
-                        alt="Еллі"
-                    >
+                    <img class="sad__elly-image sad__elly-image--current" src="images/elly/elly_sadly1.webp" alt="Еллі">
 
-                    <img
-                        class="sad__elly-image sad__elly-image--next"
-                        src="images/elly/elly_sadly1.webp"
-                        alt=""
-                        aria-hidden="true"
-                    >
+                    <img class="sad__elly-image sad__elly-image--next" src="images/elly/elly_sadly1.webp" alt=""
+                        aria-hidden="true">
 
                 </div>
 
@@ -411,7 +403,7 @@
 
                 <div class="sad__action">
                     <!-- Контент поточного кроку -->
-                     
+
                 </div>
 
 
@@ -511,6 +503,424 @@
                 </div>
             </div>
 
+        </section>
+
+        <!-- Злість -->
+        <section class="angry" aria-hidden="true">
+            <div class="angry__content">
+                <h2 class="angry__title">Я бачу, ти злишся. Давай допоможу тобі заспокоїтися! Разом впораємось!</h2>
+                <img class="angry__elly-image" src="images/elly/elly_ag.webp" alt="Еллі">
+
+
+                <div class="angry__games">
+
+                    <p class="angry__games-title">
+                        Обери, що хочеш спробувати
+                    </p>
+
+                    <div class="angry__games-list">
+
+                        <button class="angry__game" type="button" data-angry-game="cloud">
+                            <span class="angry__game-icon" aria-hidden="true">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" class="cloud-tangle">
+
+                                    <!-- =========================================================
+       ЗАВИТКИ ВОКРУГ ХМАРКИ (5 штук)
+       Каждый — отдельный path с классом .tangle
+       data-tangle="1..5" — для JS
+  ========================================================== -->
+
+                                    <!-- Завиток 1 — верхний левый (петля) -->
+                                    <path class="tangle" data-tangle="1" d="M14 14
+           C 11 11, 8 14, 10 17
+           C 12 20, 16 19, 15 15
+           C 14.5 12.5, 12 12, 11 13.5" stroke="#86B3C6" stroke-width="1.8" stroke-linecap="round" fill="none" />
+
+                                    <!-- Завиток 2 — верхний правый (зигзаг) -->
+                                    <path class="tangle" data-tangle="2" d="M46 12 L 50 16 L 47 19 L 51 22"
+                                        stroke="#86B3C6" stroke-width="1.8" stroke-linecap="round"
+                                        stroke-linejoin="round" fill="none" />
+
+                                    <!-- Завиток 3 — левый (спираль) -->
+                                    <path class="tangle" data-tangle="3" d="M8 32
+           C 5 30, 4 34, 7 35
+           C 10 36, 11 32, 8.5 30.5
+           C 6.5 29.5, 5 31, 5.5 33" stroke="#86B3C6" stroke-width="1.8" stroke-linecap="round" fill="none" />
+
+                                    <!-- Завиток 4 — правый (узелок) -->
+                                    <path class="tangle" data-tangle="4" d="M56 30
+           C 59 28, 60 32, 57 33
+           C 54 34, 53 30, 55.5 28.5
+           C 58 27, 60 29, 59.5 31" stroke="#86B3C6" stroke-width="1.8" stroke-linecap="round" fill="none" />
+
+                                    <!-- Завиток 5 — нижний правый (волна-узел) -->
+                                    <path class="tangle" data-tangle="5" d="M50 48
+           C 54 46, 56 50, 53 51
+           C 50 52, 49 49, 51 47.5" stroke="#86B3C6" stroke-width="1.8" stroke-linecap="round" fill="none" />
+
+
+                                    <!-- =========================================================
+       ТЕЛО ХМАРКИ
+  ========================================================== -->
+                                    <path d="M18 43
+           C13 43 10 39.5 10 35
+           C10 30.8 13.2 27.5 17.5 27.2
+           C18.5 21.3 23.3 17 29.5 17
+           C35.2 17 40 20.6 41.5 25.8
+           C42.2 25.6 43 25.5 44 25.5
+           C49.5 25.5 54 29.4 54 34.5
+           C54 39.3 50.2 43 45 43
+           Z" fill="#DCEEF4" stroke="#86B3C6" stroke-width="2" stroke-linejoin="round" />
+
+
+                                    <!-- =========================================================
+       ЛИЦО — «трохи неспокійне»
+       (у спокійному стані JS замінить ці path на «задоволене»)
+  ========================================================== -->
+
+                                    <!-- Брови — чуть сходятся к центру (легкое напряжение) -->
+                                    <path class="face face--worried" d="M23 31 L27 32" stroke="#668D9D"
+                                        stroke-width="1.6" stroke-linecap="round" />
+
+                                    <path class="face face--worried" d="M41 31 L37 32" stroke="#668D9D"
+                                        stroke-width="1.6" stroke-linecap="round" />
+
+                                    <!-- Глаза — те же дуги, что у тебя -->
+                                    <path d="M25 34C25.8 33 27 33 27.8 34" stroke="#668D9D" stroke-width="1.7"
+                                        stroke-linecap="round" />
+
+                                    <path d="M36.2 34C37 33 38.2 33 39 34" stroke="#668D9D" stroke-width="1.7"
+                                        stroke-linecap="round" />
+
+                                    <!-- Рот — волнистая линия (неспокойствие) -->
+                                    <path class="face face--worried" d="M28 39
+           C 30 37.5, 31.5 40, 33.5 38.5
+           C 35 37.5, 36 38.5, 37 38" stroke="#668D9D" stroke-width="1.7" stroke-linecap="round" fill="none" />
+
+                                    <!-- Рот — спокойная улыбка (скрыт, JS покажет в конце) -->
+                                    <path class="face face--calm" d="M29.5 38C31 39.5 33 39.5 34.5 38" stroke="#668D9D"
+                                        stroke-width="1.7" stroke-linecap="round" fill="none" style="display: none;" />
+                                </svg>
+                            </span>
+                            <span class="angry__game-title">Розплутай хмарку</span>
+                            <span class="angry__game-text">Натискай на вузлики</span>
+                        </button>
+
+                        <button class="angry__game" type="button" data-angry-game="steam">
+                            <span class="angry__game-icon" aria-hidden="true">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+
+                                    <!-- Хмарка пари -->
+                                    <path d="M16 37
+                                            C12 37 9 34 9 30
+                                            C9 26.5 11.8 23.5 15.5 23
+                                            C16.8 18.5 20.8 15.5 25.5 15.5
+                                            C30 15.5 34 18.2 35.5 22.2" stroke="#91B8C8" stroke-width="2.2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+
+                                    <!-- Плавний потік -->
+                                    <path d="M34 23
+                                            C39 22 42 24 44 27
+                                            C47 31 50 32 55 31" stroke="#A8C9D5" stroke-width="2.2"
+                                        stroke-linecap="round" />
+
+                                    <path d="M34 29
+                                            C39 28 41 30 43 33
+                                            C46 37 50 38 55 37" stroke="#BBD7E0" stroke-width="2.2"
+                                        stroke-linecap="round" />
+
+                                    <path d="M33 35
+                                            C37 34 39 36 41 39
+                                            C43 42 47 44 52 43" stroke="#C9E1E7" stroke-width="2"
+                                        stroke-linecap="round" />
+
+                                    <!-- Маленькі лінії руху -->
+                                    <path d="M18 43C20 45 22 45 24 44" stroke="#B7D3DD" stroke-width="1.8"
+                                        stroke-linecap="round" />
+
+                                    <path d="M15 47C17 49 19 49 21 48" stroke="#C5DDE4" stroke-width="1.6"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </span>
+                            <span class="angry__game-title">Випусти пару</span>
+                            <span class="angry__game-text">Натискай і випускай</span>
+                        </button>
+
+                        <button class="angry__game" type="button" data-angry-game="calm">
+                            <span class="angry__game-icon" aria-hidden="true">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+
+                                    <!-- М'яка траєкторія -->
+                                    <path d="M10 42
+                                            C18 25 29 19 42 23
+                                            C49 25 53 31 54 38" stroke="#C8DDE2" stroke-width="1.6"
+                                        stroke-linecap="round" stroke-dasharray="2 4" />
+
+                                    <!-- Світлова кулька 1 -->
+                                    <circle cx="17" cy="32" r="5" fill="#DCEEF0" stroke="#9FC4CD" stroke-width="1.7" />
+
+                                    <circle cx="17" cy="32" r="2" fill="#FFFFFF" />
+
+                                    <!-- Світлова кулька 2 -->
+                                    <circle cx="34" cy="22" r="5.5" fill="#E4F0DF" stroke="#AFC8A8"
+                                        stroke-width="1.7" />
+
+                                    <circle cx="34" cy="22" r="2" fill="#FFFFFF" />
+
+                                    <!-- Світлова кулька 3 -->
+                                    <circle cx="48" cy="34" r="4.5" fill="#F0E8D9" stroke="#D1BFA0"
+                                        stroke-width="1.7" />
+
+                                    <circle cx="48" cy="34" r="1.8" fill="#FFFFFF" />
+
+                                    <!-- Долоньки -->
+                                    <path d="M22 51
+                                            C23 47 25 44 28 44
+                                            C29 44 30 45 30 46
+                                            L29 49
+                                            C31 47 33 46 34 47
+                                            C35 48 34 50 32 52
+                                            C29 55 25 55 22 51Z" fill="#E7DCD3" stroke="#B99F91" stroke-width="1.6"
+                                        stroke-linejoin="round" />
+
+                                    <path d="M42 51
+                                            C41 47 39 44 36 44
+                                            C35 44 34 45 34 46
+                                            L35 49
+                                            C33 47 31 46 30 47" stroke="#B99F91" stroke-width="1.6"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                            <span class="angry__game-title">Лови спокій</span>
+                            <span class="angry__game-text">Лови світлячків спокою</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- сюда JS вставит кнопку «Повернутися» -->
+            </div>
+        </section>
+
+        <section class="angry-game" aria-hidden="true" data-angry-screen="cloud">
+
+            <div class="angry-game__content">
+
+                <h2 class="angry-game__title">
+                    Допоможи мені розплутати нитки
+                </h2>
+
+                <div class="angry-game__stage">
+
+                    <!-- Еллі — 4 шари -->
+                    <div class="angry-game__elly">
+
+                        <img class="angry-game__elly-image angry-game__elly-image--angry"
+                            src="images/elly/elly_angry.webp" alt="Еллі">
+
+                        <img class="angry-game__elly-image angry-game__elly-image--half-calm"
+                            src="images/elly/elly_ag.webp" alt="" aria-hidden="true">
+
+                        <img class="angry-game__elly-image angry-game__elly-image--calm"
+                            src="images/elly/elly_angry_2.webp" alt="" aria-hidden="true">
+
+                        <img class="angry-game__elly-image angry-game__elly-image--blink"
+                            src="images/elly/elly_angry_1.webp" alt="" aria-hidden="true">
+
+                    </div>
+
+                    <!-- Нитки поверх Еллі -->
+                    <div class="angry-game__threads">
+
+                        <svg class="angry-game__svg" viewBox="0 0 300 250" preserveAspectRatio="xMidYMid meet"
+                            aria-hidden="true">
+                            <!-- Нитка 1 — НИЖНІЙ шар -->
+                            <g class="thread" data-thread="1" data-order="5">
+                                <path class="thread__glow" d="M 40 60 Q 80 30, 120 70 T 200 50"
+                                    stroke="rgba(255, 255, 255, 0.85)" stroke-width="6" fill="none"
+                                    stroke-linecap="round" />
+                                <path class="thread__line" d="M 40 60 Q 80 30, 120 70 T 200 50" stroke="#B5739D"
+                                    stroke-width="3" fill="none" stroke-linecap="round" />
+                                <circle class="thread__knot" cx="200" cy="50" r="7" fill="#8C4E74" />
+                                <circle class="thread__knot-inner" cx="200" cy="50" r="3.5" fill="#F7E4EE" />
+                            </g>
+
+                            <!-- Нитка 2 — шар 2 -->
+                            <g class="thread" data-thread="2" data-order="4">
+                                <path class="thread__glow" d="M 260 80 Q 230 130, 180 120 T 100 160"
+                                    stroke="rgba(255, 255, 255, 0.85)" stroke-width="6" fill="none"
+                                    stroke-linecap="round" />
+                                <path class="thread__line" d="M 260 80 Q 230 130, 180 120 T 100 160" stroke="#C99A5C"
+                                    stroke-width="3" fill="none" stroke-linecap="round" />
+                                <circle class="thread__knot" cx="100" cy="160" r="7" fill="#8F6A38" />
+                                <circle class="thread__knot-inner" cx="100" cy="160" r="3.5" fill="#F6EBD9" />
+                            </g>
+
+                            <!-- Нитка 3 — шар 3 -->
+                            <g class="thread" data-thread="3" data-order="3">
+                                <path class="thread__glow" d="M 60 200 Q 110 230, 160 190 T 250 210"
+                                    stroke="rgba(255, 255, 255, 0.85)" stroke-width="6" fill="none"
+                                    stroke-linecap="round" />
+                                <path class="thread__line" d="M 60 200 Q 110 230, 160 190 T 250 210" stroke="#5C8BB5"
+                                    stroke-width="3" fill="none" stroke-linecap="round" />
+                                <circle class="thread__knot" cx="250" cy="210" r="7" fill="#375B7F" />
+                                <circle class="thread__knot-inner" cx="250" cy="210" r="3.5" fill="#DCE7F2" />
+                            </g>
+
+                            <!-- Нитка 4 — шар 4 -->
+                            <g class="thread" data-thread="4" data-order="2">
+                                <path class="thread__glow" d="M 30 130 Q 90 100, 150 140 T 220 120"
+                                    stroke="rgba(255, 255, 255, 0.85)" stroke-width="6" fill="none"
+                                    stroke-linecap="round" />
+                                <path class="thread__line" d="M 30 130 Q 90 100, 150 140 T 220 120" stroke="#7BA88E"
+                                    stroke-width="3" fill="none" stroke-linecap="round" />
+                                <circle class="thread__knot" cx="220" cy="120" r="7" fill="#4D7660" />
+                                <circle class="thread__knot-inner" cx="220" cy="120" r="3.5" fill="#E2EFE7" />
+                            </g>
+
+                            <!-- Нитка 5 — ВЕРХНІЙ шар -->
+                            <g class="thread" data-thread="5" data-order="1">
+                                <path class="thread__glow" d="M 240 30 Q 200 70, 160 50 T 80 100"
+                                    stroke="rgba(255, 255, 255, 0.85)" stroke-width="6" fill="none"
+                                    stroke-linecap="round" />
+                                <path class="thread__line" d="M 240 30 Q 200 70, 160 50 T 80 100" stroke="#8E6BB8"
+                                    stroke-width="3" fill="none" stroke-linecap="round" />
+                                <circle class="thread__knot" cx="80" cy="100" r="7" fill="#5E4585" />
+                                <circle class="thread__knot-inner" cx="80" cy="100" r="3.5" fill="#EAE2F2" />
+                            </g>
+                        </svg>
+
+                    </div>
+
+                </div>
+
+                <p class="angry-game__counter">
+                    Залишилось ниток: <span data-thread-count>5</span>
+                </p>
+
+                <div class="angry-game__finish" aria-hidden="true">
+
+                    <p class="angry-game__thanks">
+                        А ти як зараз?
+                    </p>
+
+                    <div class="angry-game__choices">
+
+                        <button class="angry-game__choice" type="button" data-angry-choice="calm">
+                            Я вже так не злюся
+                        </button>
+
+                        <button class="angry-game__choice" type="button" data-angry-choice="still-angry">
+                            Я ще злюся
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =========================================================
+            ЕКРАН ГРИ «ВИПУСТИ ПАРУ»
+            ========================================================== -->
+        <section class="angry-steam" aria-hidden="true" data-angry-screen="steam">
+
+            <div class="angry-steam__content">
+
+                <h2 class="angry-steam__title">
+                    Допоможи мені випустити пару
+                </h2>
+
+                <p class="angry-steam__hint" data-steam-hint aria-live="polite"></p>
+
+                <div class="angry-steam__stage">
+
+                    <!-- Димка на фоні -->
+                    <div class="angry-steam__fog" aria-hidden="true">
+                        <span class="angry-steam__fog-blob angry-steam__fog-blob--1"></span>
+                        <span class="angry-steam__fog-blob angry-steam__fog-blob--2"></span>
+                        <span class="angry-steam__fog-blob angry-steam__fog-blob--3"></span>
+                        <span class="angry-steam__fog-blob angry-steam__fog-blob--4"></span>
+                    </div>
+
+                    <!-- Еллі — 4 шари -->
+                    <div class="angry-steam__elly">
+
+                        <img class="angry-steam__elly-image angry-steam__elly-image--full-steam"
+                            src="images/elly/elly_angry_4.webp" alt="Еллі">
+
+                        <img class="angry-steam__elly-image angry-steam__elly-image--some-steam"
+                            src="images/elly/elly_angry_5.webp" alt="" aria-hidden="true">
+
+                        <img class="angry-steam__elly-image angry-steam__elly-image--calm"
+                            src="images/elly/elly_angry_2.webp" alt="" aria-hidden="true">
+
+                        <img class="angry-steam__elly-image angry-steam__elly-image--blink"
+                            src="images/elly/elly_angry_1.webp" alt="" aria-hidden="true">
+
+                    </div>
+
+                    <!-- Поле для шариків -->
+                    <div class="angry-steam__balloons" data-balloons-container aria-hidden="true"></div>
+
+                </div>
+
+                <!-- Елементи під час гри (зникають у фіналі) -->
+                <div class="angry-steam__live-info" data-steam-live>
+
+                    <p class="angry-steam__counter">
+                        Розвіяно пари: <span data-balloon-count>0</span>
+                    </p>
+
+                    <p class="angry-steam__timer">
+                        Залишилось: <span data-steam-time>60</span> с
+                    </p>
+
+                </div>
+
+                <!-- Фінальний блок -->
+                <div class="angry-steam__finish" aria-hidden="true">
+                <p class="angry-steam__thanks" data-steam-thanks></p>
+                <p class="angry-steam__question">А ти як себе почуваєш?</p>
+                <div class="angry-steam__choices">
+                    <button class="angry-steam__choice" data-angry-choice="calm">Я вже так не злюся</button>
+                    <button class="angry-steam__choice" data-angry-choice="still-angry">Я ще злюся</button>
+                </div>
+            </div>
+
+            </div>
+        </section>
+        <section class="angry-final" aria-hidden="true">
+            <div class="angry-final__content">
+
+                <h2 class="angry-final__title" data-angry-final-title>
+                    Рада допомогти! Я з тобою поруч
+                </h2>
+
+                <div class="angry-final__elly">
+                    <img
+                        class="angry-final__elly-image angry-final__elly-image--current"
+                        src="images/elly/elly_angry_2.webp"
+                        alt="Еллі"
+                        data-angry-final-image
+                    >
+                    <img
+                        class="angry-final__elly-image angry-final__elly-image--blink"
+                        src="images/elly/elly_angry_1.webp"
+                        alt=""
+                        aria-hidden="true"
+                        data-angry-final-blink
+                    >
+                </div>
+
+                <!-- activity-options вставится сюда через JS -->
+
+            </div>
         </section>
 
         <div class="activity-options">
