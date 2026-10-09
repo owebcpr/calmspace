@@ -374,7 +374,11 @@
 
         <!-- Мені сумно -->
         <section class="sad" aria-hidden="true">
-
+            <div class="sad__clouds" aria-hidden="true">
+                <span class="sad__cloud sad__cloud--1"></span>
+                <span class="sad__cloud sad__cloud--2"></span>
+                <span class="sad__cloud sad__cloud--3"></span>
+            </div>
             <div class="sad__content">
 
                 <h2 class="sad__title">
@@ -526,9 +530,7 @@
                                     xmlns="http://www.w3.org/2000/svg" class="cloud-tangle">
 
                                     <!-- =========================================================
-       ЗАВИТКИ ВОКРУГ ХМАРКИ (5 штук)
-       Каждый — отдельный path с классом .tangle
-       data-tangle="1..5" — для JS
+       ЗАВИТКИ НАВКОЛО ХМАРКИ (5 штук)
   ========================================================== -->
 
                                     <!-- Завиток 1 — верхний левый (петля) -->
@@ -561,7 +563,7 @@
 
 
                                     <!-- =========================================================
-       ТЕЛО ХМАРКИ
+       ТІЛО ХМАРКИ
   ========================================================== -->
                                     <path d="M18 43
            C13 43 10 39.5 10 35
@@ -575,7 +577,7 @@
 
 
                                     <!-- =========================================================
-       ЛИЦО — «трохи неспокійне»
+       Обличчя — «трохи неспокійне»
        (у спокійному стані JS замінить ці path на «задоволене»)
   ========================================================== -->
 
@@ -921,6 +923,97 @@
                 <!-- activity-options вставится сюда через JS -->
 
             </div>
+        </section>
+
+        <!-- =========================================================
+            ЕКРАН ГРИ «ЛОВИ СПОКІЙ»
+            ========================================================== -->
+        <section class="angry-calm" aria-hidden="true">
+
+            <div class="angry-calm__content">
+
+                <!-- Заголовок — монолог Еллі -->
+                <h2 class="angry-calm__title" data-calm-title>
+                    Давай спіймаємо трохи спокою
+                </h2>
+
+                <!-- Прогрес — крапочки під заголовком -->
+                <div
+                    class="angry-calm__progress"
+                    data-calm-progress>
+                </div>
+
+                <!-- Ігрова сцена -->
+                <div class="angry-calm__stage">
+
+                    <!-- Зірки на фоні -->
+                    <div class="angry-calm__stars" aria-hidden="true">
+                        <span class="angry-calm__star angry-calm__star--1"></span>
+                        <span class="angry-calm__star angry-calm__star--2"></span>
+                        <span class="angry-calm__star angry-calm__star--3"></span>
+                        <span class="angry-calm__star angry-calm__star--4"></span>
+                        <span class="angry-calm__star angry-calm__star--5"></span>
+                        <span class="angry-calm__star angry-calm__star--6"></span>
+                    </div>
+
+                    <!-- Світлячки з'являться тут -->
+                    <div
+                        class="angry-calm__lights"
+                        data-calm-lights>
+                    </div>
+
+                    <!-- Еллі -->
+                    <div class="angry-calm__elly">
+
+                        <img
+                            class="angry-calm__elly-image angry-calm__elly-image--fireflies1 is-visible"
+                            src="images/elly/elly_angry_fireflies1.webp"
+                            alt=""
+                        >
+
+                        <img
+                            class="angry-calm__elly-image angry-calm__elly-image--fireflies2"
+                            src="images/elly/elly_angry_fireflies2.webp"
+                            alt=""
+                        >
+
+                        <img
+                            class="angry-calm__elly-image angry-calm__elly-image--fireflies3"
+                            src="images/elly/elly_angry_fireflies3.webp"
+                            alt=""
+                        >
+
+                    </div>
+
+                </div>
+
+                <!-- Фінальний блок -->
+                <div
+                    class="angry-calm__finish"
+                    data-calm-finish>
+
+                    <div class="angry-calm__choices">
+
+                        <button
+                            type="button"
+                            class="angry-calm__choice"
+                            data-calm-choice="calm">
+                            Мені вже спокійніше
+                        </button>
+
+                        <button
+                            type="button"
+                            class="angry-calm__choice"
+                            data-calm-choice="angry">
+                            Я все ще злюся
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </section>
 
         <div class="activity-options">

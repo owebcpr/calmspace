@@ -29,7 +29,7 @@
         align-items: center;
         width: 100%;
         max-width: 640px;
-        gap: var(--space-3);
+        gap: var(--space-2);
         text-align: center;
         padding-top: var(--space-4);
     }
@@ -324,12 +324,18 @@
         opacity: 0;
         transform: translateY(20px);
 
-        transition:
-            opacity 800ms ease,
-            transform 800ms ease;
-
         &.is-visible {
             display: flex;
+            animation: angry-steam-finish-appear 800ms ease forwards;
+        }
+    }
+
+    @keyframes angry-steam-finish-appear {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
             opacity: 1;
             transform: translateY(0);
         }

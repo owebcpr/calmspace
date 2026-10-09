@@ -1855,11 +1855,9 @@ BREATHING
 
 .sad {
   position: relative;
-  -webkit-perspective: 1000px;
-          perspective: 1000px;
   display: none;
   width: 100%;
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 140px);
   background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.45), transparent 55%), linear-gradient(145deg, #f4f0f7, #eef3f1);
   -webkit-transition: background 1200ms ease, opacity 500ms ease;
   transition: background 1200ms ease, opacity 500ms ease;
@@ -1873,7 +1871,50 @@ BREATHING
   display: block;
   opacity: 1;
 }
+.sad__clouds {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.sad__cloud {
+  position: absolute;
+  border-radius: 50%;
+  -webkit-filter: blur(20px);
+          filter: blur(20px);
+  will-change: transform;
+}
+.sad__cloud--1 {
+  width: 220px;
+  height: 110px;
+  left: 0;
+  bottom: 8%;
+  background: radial-gradient(ellipse at center, rgba(196, 214, 232, 0.8) 0%, rgba(196, 214, 232, 0.4) 50%, transparent 75%);
+  -webkit-animation: sad-cloud-drift-1 45s linear infinite;
+          animation: sad-cloud-drift-1 45s linear infinite;
+}
+.sad__cloud--2 {
+  width: 180px;
+  height: 90px;
+  left: 0;
+  bottom: 30%;
+  background: radial-gradient(ellipse at center, rgba(232, 200, 220, 0.75) 0%, rgba(232, 200, 220, 0.35) 50%, transparent 75%);
+  -webkit-animation: sad-cloud-drift-2 35s linear infinite;
+          animation: sad-cloud-drift-2 35s linear infinite;
+}
+.sad__cloud--3 {
+  width: 120px;
+  height: 60px;
+  left: 0;
+  bottom: 10%;
+  background: radial-gradient(ellipse at center, rgba(190, 220, 240, 0.7) 0%, rgba(190, 220, 240, 0.3) 50%, transparent 75%);
+  -webkit-animation: sad-cloud-drift-3 20s linear infinite;
+          animation: sad-cloud-drift-3 20s linear infinite;
+}
 .sad__content {
+  position: relative;
+  z-index: 1;
   width: min(100% - 32px, 720px);
   margin-inline: auto;
   display: -webkit-box;
@@ -1891,7 +1932,7 @@ BREATHING
 .sad__title {
   max-width: 620px;
   min-height: 3.6em;
-  margin: 0 0 24px;
+  margin: 0 0 var(--space-3);
   text-align: center;
   color: var(--text-primary);
   -webkit-transition: opacity 400ms ease, -webkit-transform 400ms ease;
@@ -1910,13 +1951,16 @@ BREATHING
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  overflow: hidden;
   width: 100%;
   min-height: 320px;
-  margin-bottom: 24px;
+  margin: 0 0 var(--space-3);
   -webkit-transition: -webkit-transform 800ms ease;
   transition: -webkit-transform 800ms ease;
   transition: transform 800ms ease;
   transition: transform 800ms ease, -webkit-transform 800ms ease;
+  -webkit-transform: translateY(-35px);
+          transform: translateY(-35px);
 }
 .sad__elly.is-raised {
   -webkit-transform: translateY(-50px);
@@ -2169,6 +2213,66 @@ BREATHING
     opacity: 0;
     -webkit-transform: translate(-50%, -50%) translateZ(1100px) scale(0.05) rotate(12deg);
             transform: translate(-50%, -50%) translateZ(1100px) scale(0.05) rotate(12deg);
+  }
+}
+@-webkit-keyframes sad-cloud-drift-1 {
+  0% {
+    -webkit-transform: translateX(-250px) translateY(0) scale(1);
+            transform: translateX(-250px) translateY(0) scale(1);
+  }
+  100% {
+    -webkit-transform: translateX(calc(100vw + 250px)) translateY(-30px) scale(1);
+            transform: translateX(calc(100vw + 250px)) translateY(-30px) scale(1);
+  }
+}
+@keyframes sad-cloud-drift-1 {
+  0% {
+    -webkit-transform: translateX(-250px) translateY(0) scale(1);
+            transform: translateX(-250px) translateY(0) scale(1);
+  }
+  100% {
+    -webkit-transform: translateX(calc(100vw + 250px)) translateY(-30px) scale(1);
+            transform: translateX(calc(100vw + 250px)) translateY(-30px) scale(1);
+  }
+}
+@-webkit-keyframes sad-cloud-drift-2 {
+  0% {
+    -webkit-transform: translateX(-250px) translateY(0) scale(1);
+            transform: translateX(-250px) translateY(0) scale(1);
+  }
+  100% {
+    -webkit-transform: translateX(calc(100vw + 250px)) translateY(20px) scale(1);
+            transform: translateX(calc(100vw + 250px)) translateY(20px) scale(1);
+  }
+}
+@keyframes sad-cloud-drift-2 {
+  0% {
+    -webkit-transform: translateX(-250px) translateY(0) scale(1);
+            transform: translateX(-250px) translateY(0) scale(1);
+  }
+  100% {
+    -webkit-transform: translateX(calc(100vw + 250px)) translateY(20px) scale(1);
+            transform: translateX(calc(100vw + 250px)) translateY(20px) scale(1);
+  }
+}
+@-webkit-keyframes sad-cloud-drift-3 {
+  0% {
+    -webkit-transform: translateX(-250px) translateY(0) scale(1);
+            transform: translateX(-250px) translateY(0) scale(1);
+  }
+  100% {
+    -webkit-transform: translateX(calc(100vw + 250px)) translateY(-15px) scale(1);
+            transform: translateX(calc(100vw + 250px)) translateY(-15px) scale(1);
+  }
+}
+@keyframes sad-cloud-drift-3 {
+  0% {
+    -webkit-transform: translateX(-250px) translateY(0) scale(1);
+            transform: translateX(-250px) translateY(0) scale(1);
+  }
+  100% {
+    -webkit-transform: translateX(calc(100vw + 250px)) translateY(-15px) scale(1);
+            transform: translateX(calc(100vw + 250px)) translateY(-15px) scale(1);
   }
 }
 /* ==========================================
@@ -2814,18 +2918,37 @@ BREATHING
   opacity: 0;
   -webkit-transform: translateY(20px);
           transform: translateY(20px);
-  -webkit-transition: opacity 800ms ease, -webkit-transform 800ms ease;
-  transition: opacity 800ms ease, -webkit-transform 800ms ease;
-  transition: opacity 800ms ease, transform 800ms ease;
-  transition: opacity 800ms ease, transform 800ms ease, -webkit-transform 800ms ease;
 }
 .angry-game__finish.is-visible {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  opacity: 1;
-  -webkit-transform: translateY(-40px);
-          transform: translateY(-40px);
+  -webkit-animation: angry-game-finish-appear 800ms ease forwards;
+          animation: angry-game-finish-appear 800ms ease forwards;
+}
+@-webkit-keyframes angry-game-finish-appear {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(-40px);
+            transform: translateY(-40px);
+  }
+}
+@keyframes angry-game-finish-appear {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(-40px);
+            transform: translateY(-40px);
+  }
 }
 .angry-game__thanks {
   max-width: 520px;
@@ -2918,7 +3041,7 @@ BREATHING
           align-items: center;
   width: 100%;
   max-width: 640px;
-  gap: var(--space-3);
+  gap: var(--space-2);
   text-align: center;
   padding-top: var(--space-4);
 }
@@ -3317,18 +3440,37 @@ BREATHING
   opacity: 0;
   -webkit-transform: translateY(20px);
           transform: translateY(20px);
-  -webkit-transition: opacity 800ms ease, -webkit-transform 800ms ease;
-  transition: opacity 800ms ease, -webkit-transform 800ms ease;
-  transition: opacity 800ms ease, transform 800ms ease;
-  transition: opacity 800ms ease, transform 800ms ease, -webkit-transform 800ms ease;
 }
 .angry-steam__finish.is-visible {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  opacity: 1;
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
+  -webkit-animation: angry-steam-finish-appear 800ms ease forwards;
+          animation: angry-steam-finish-appear 800ms ease forwards;
+}
+@-webkit-keyframes angry-steam-finish-appear {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@keyframes angry-steam-finish-appear {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
 }
 .angry-steam__thanks {
   max-width: 520px;
@@ -3377,4 +3519,696 @@ BREATHING
 .angry-steam__choice:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
+}
+
+/* ==========================================
+   ANGRY CALM
+   Екран гри «Лови спокій»
+========================================== */
+.angry-calm {
+  position: relative;
+  display: none;
+  width: 100%;
+  padding: var(--space-4);
+  margin-bottom: var(--space-2);
+  background-image: url("../../images/bg_angry_calm.webp");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  border-radius: var(--radius-lg);
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -ms-touch-action: none;
+      touch-action: none;
+}
+.angry-calm.is-active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.angry-calm {
+  /* ==========================================
+     ФІНАЛЬНИЙ СТАН СЕКЦІЇ
+  ========================================== */
+}
+.angry-calm.is-final .angry-calm__stage {
+  height: clamp(200px, 32vh, 300px);
+}
+.angry-calm.is-final .angry-calm__progress {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  -webkit-transition: opacity 400ms ease, visibility 400ms ease, height 400ms ease, margin 400ms ease;
+  transition: opacity 400ms ease, visibility 400ms ease, height 400ms ease, margin 400ms ease;
+}
+.angry-calm.is-final .angry-calm__elly {
+  z-index: 10;
+  -webkit-transform: translateX(-50%) translateY(10px);
+          transform: translateX(-50%) translateY(10px);
+}
+.angry-calm.is-final .angry-calm__title {
+  min-height: 1em;
+  -webkit-transition: min-height 400ms ease, opacity 400ms ease, -webkit-transform 400ms ease;
+  transition: min-height 400ms ease, opacity 400ms ease, -webkit-transform 400ms ease;
+  transition: min-height 400ms ease, opacity 400ms ease, transform 400ms ease;
+  transition: min-height 400ms ease, opacity 400ms ease, transform 400ms ease, -webkit-transform 400ms ease;
+}
+.angry-calm {
+  /* ==========================================
+     КОНТЕНТ
+  ========================================== */
+}
+.angry-calm__content {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  max-width: 640px;
+  /*
+      Розтягуємо контент на всю висоту
+      екрана (мінус header), щоб картка
+      не виглядала обрізаною.
+  */
+  min-height: calc(100vh - 200px);
+  min-height: calc(100dvh - 200px);
+  gap: var(--space-3);
+  text-align: center;
+}
+.angry-calm {
+  /* ==========================================
+     ЗАГОЛОВОК — монолог Еллі
+  ========================================== */
+}
+.angry-calm__title {
+  position: relative;
+  z-index: 5;
+  max-width: 520px;
+  min-height: 2.4em;
+  margin: 0;
+  color: #fff;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45), 0 0 20px rgba(255, 255, 255, 0.15);
+  -webkit-transition: opacity 400ms ease, -webkit-transform 400ms ease;
+  transition: opacity 400ms ease, -webkit-transform 400ms ease;
+  transition: opacity 400ms ease, transform 400ms ease;
+  transition: opacity 400ms ease, transform 400ms ease, -webkit-transform 400ms ease;
+}
+.angry-calm {
+  /* ==========================================
+     ПРОГРЕС
+  ========================================== */
+}
+.angry-calm__progress {
+  position: relative;
+  z-index: 5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 9px;
+  margin: 0;
+}
+.angry-calm__progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  -webkit-box-shadow: 0 0 4px rgba(255, 255, 255, 0.25);
+          box-shadow: 0 0 4px rgba(255, 255, 255, 0.25);
+  -webkit-transition: background 0.3s ease, -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  transition: background 0.3s ease, -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+}
+.angry-calm__progress-dot.is-caught {
+  background: #ffe88b;
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
+  -webkit-box-shadow: 0 0 8px rgba(255, 232, 139, 0.9), 0 0 16px rgba(255, 232, 139, 0.6);
+          box-shadow: 0 0 8px rgba(255, 232, 139, 0.9), 0 0 16px rgba(255, 232, 139, 0.6);
+}
+.angry-calm {
+  /* ==========================================
+     ІГРОВА СЦЕНА
+  ========================================== */
+}
+.angry-calm__stage {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: clamp(280px, 42vh, 420px);
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -ms-touch-action: none;
+      touch-action: none;
+  -webkit-transition: height 800ms ease;
+  transition: height 800ms ease;
+}
+.angry-calm {
+  /* ==========================================
+     ЗІРКИ
+  ========================================== */
+}
+.angry-calm__stars {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.angry-calm__star {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  -webkit-box-shadow: 0 0 5px rgba(255, 255, 255, 0.9), 0 0 12px rgba(255, 245, 190, 0.7);
+          box-shadow: 0 0 5px rgba(255, 255, 255, 0.9), 0 0 12px rgba(255, 245, 190, 0.7);
+  opacity: 0.35;
+  -webkit-animation: calm-star-twinkle 3.5s ease-in-out infinite;
+          animation: calm-star-twinkle 3.5s ease-in-out infinite;
+}
+.angry-calm__star::before, .angry-calm__star::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.angry-calm__star::after {
+  width: 16px;
+  height: 2px;
+}
+.angry-calm__star--1 {
+  top: 14%;
+  left: 17%;
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+.angry-calm__star--2 {
+  top: 24%;
+  left: 72%;
+  width: 5px;
+  height: 5px;
+  -webkit-animation-delay: 1.4s;
+          animation-delay: 1.4s;
+}
+.angry-calm__star--3 {
+  top: 38%;
+  left: 30%;
+  width: 4px;
+  height: 4px;
+  -webkit-animation-delay: 2.2s;
+          animation-delay: 2.2s;
+}
+.angry-calm__star--4 {
+  top: 18%;
+  left: 48%;
+  width: 7px;
+  height: 7px;
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+}
+.angry-calm__star--5 {
+  top: 43%;
+  left: 82%;
+  width: 5px;
+  height: 5px;
+  -webkit-animation-delay: 2.8s;
+          animation-delay: 2.8s;
+}
+.angry-calm__star--6 {
+  top: 53%;
+  left: 13%;
+  width: 4px;
+  height: 4px;
+  -webkit-animation-delay: 1.8s;
+          animation-delay: 1.8s;
+}
+.angry-calm {
+  /* ==========================================
+     ЕЛЛІ
+  ========================================== */
+}
+.angry-calm__elly {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 3;
+  /*
+      Фіксовані пропорції контейнера —
+      картинки не змінюють його розмір.
+  */
+  width: min(240px, 45vw);
+  height: min(220px, 42vw);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-transition: -webkit-transform 1200ms ease;
+  transition: -webkit-transform 1200ms ease;
+  transition: transform 1200ms ease;
+  transition: transform 1200ms ease, -webkit-transform 1200ms ease;
+}
+.angry-calm__elly-image {
+  /*
+      Абсолютне позиціонування —
+      усі три картинки займають один і той
+      самий прямокутник.
+  */
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  display: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  pointer-events: none;
+}
+.angry-calm__elly-image.is-visible {
+  display: block;
+}
+.angry-calm__elly-image--fireflies2 {
+  -webkit-transform: translate(0px, 2px) scale(1.15);
+          transform: translate(0px, 2px) scale(1.15);
+}
+.angry-calm__elly-image--fireflies3 {
+  -webkit-transform: translate(2px, 2px) scale(1.02);
+          transform: translate(2px, 2px) scale(1.02);
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+.angry-calm {
+  /* ==========================================
+     СЛІД СПОКОЮ НАВКОЛО ЕЛЛІ
+  ========================================== */
+}
+.angry-calm__trail {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, #ffe98a 40%, transparent 70%);
+  -webkit-box-shadow: 0 0 8px rgba(255, 233, 138, 0.9), 0 0 16px rgba(255, 233, 138, 0.5);
+          box-shadow: 0 0 8px rgba(255, 233, 138, 0.9), 0 0 16px rgba(255, 233, 138, 0.5);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-animation: calm-trail-appear 600ms ease forwards;
+          animation: calm-trail-appear 600ms ease forwards;
+  pointer-events: none;
+  z-index: 2;
+}
+.angry-calm {
+  /* ==========================================
+     СВІТЛЯЧКИ
+  ========================================== */
+}
+.angry-calm__lights {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+.angry-calm__light {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+  background: radial-gradient(circle, #fff 0%, #fff8c9 20%, #ffe98a 45%, rgba(255, 229, 125, 0.45) 65%, transparent 74%);
+  -webkit-box-shadow: 0 0 8px rgba(255, 241, 170, 0.95), 0 0 20px rgba(255, 226, 105, 0.7), 0 0 40px rgba(255, 215, 100, 0.35);
+          box-shadow: 0 0 8px rgba(255, 241, 170, 0.95), 0 0 20px rgba(255, 226, 105, 0.7), 0 0 40px rgba(255, 215, 100, 0.35);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-animation: calm-light-pulse 1.8s ease-in-out infinite;
+          animation: calm-light-pulse 1.8s ease-in-out infinite;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.angry-calm__light.is-caught {
+  -webkit-animation: calm-light-caught 0.65s ease forwards;
+          animation: calm-light-caught 0.65s ease forwards;
+  pointer-events: none;
+}
+.angry-calm__light {
+  /*
+  Політ до Еллі.
+  Світлячок плавно рухається до центру Еллі,
+  зменшується та зникає.
+  */
+}
+.angry-calm__light.is-flying {
+  pointer-events: none;
+  -webkit-transition: left 800ms ease-in, top 800ms ease-in, opacity 800ms ease-in, -webkit-transform 800ms ease-in;
+  transition: left 800ms ease-in, top 800ms ease-in, opacity 800ms ease-in, -webkit-transform 800ms ease-in;
+  transition: left 800ms ease-in, top 800ms ease-in, transform 800ms ease-in, opacity 800ms ease-in;
+  transition: left 800ms ease-in, top 800ms ease-in, transform 800ms ease-in, opacity 800ms ease-in, -webkit-transform 800ms ease-in;
+  z-index: 100;
+}
+.angry-calm__light {
+  /*
+      Плавне згасання декоративного світлячка
+      на своєму місці.
+  */
+}
+.angry-calm__light.is-fading {
+  pointer-events: none;
+  -webkit-animation: calm-light-fade 300ms ease forwards;
+          animation: calm-light-fade 300ms ease forwards;
+}
+.angry-calm {
+  /* ==========================================
+     ФІНАЛ
+  ========================================== */
+}
+.angry-calm__finish {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 320px;
+  margin: 0;
+  text-align: center;
+  opacity: 0;
+  -webkit-transform: translateY(40px);
+          transform: translateY(40px);
+}
+.angry-calm__finish.is-visible {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-animation: angry-calm-finish-appear 800ms ease forwards;
+          animation: angry-calm-finish-appear 800ms ease forwards;
+}
+@-webkit-keyframes angry-calm-finish-appear {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(40px);
+            transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@keyframes angry-calm-finish-appear {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(40px);
+            transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+.angry-calm {
+  /* ==========================================
+     КНОПКИ
+  ========================================== */
+}
+.angry-calm__choices {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+.angry-calm__choice {
+  width: 100%;
+  min-height: 48px;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  -webkit-transition: background-color var(--transition-fast), border-color var(--transition-fast), -webkit-transform var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), -webkit-transform var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), -webkit-transform var(--transition-fast);
+}
+.angry-calm__choice:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+.angry-calm__choice:active {
+  -webkit-transform: scale(0.98);
+          transform: scale(0.98);
+}
+.angry-calm__choice:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+.angry-calm {
+  /* ==========================================
+     КНОПКА «ПОВЕРНУТИСЯ»
+  ========================================== */
+}
+.angry-calm .activity-back,
+.angry-calm .button__back {
+  color: rgba(255, 255, 255, 0.75);
+}
+.angry-calm .activity-back:hover,
+.angry-calm .button__back:hover {
+  color: #fff;
+}
+
+/* ==========================================
+   АНІМАЦІЇ
+========================================== */
+@-webkit-keyframes calm-star-twinkle {
+  0%, 100% {
+    opacity: 0.25;
+    -webkit-transform: scale(0.75);
+            transform: scale(0.75);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+  }
+}
+@keyframes calm-star-twinkle {
+  0%, 100% {
+    opacity: 0.25;
+    -webkit-transform: scale(0.75);
+            transform: scale(0.75);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+  }
+}
+@-webkit-keyframes calm-light-pulse {
+  0%, 100% {
+    opacity: 0.78;
+    scale: 0.9;
+  }
+  50% {
+    opacity: 1;
+    scale: 1.08;
+  }
+}
+@keyframes calm-light-pulse {
+  0%, 100% {
+    opacity: 0.78;
+    scale: 0.9;
+  }
+  50% {
+    opacity: 1;
+    scale: 1.08;
+  }
+}
+@-webkit-keyframes calm-light-caught {
+  0% {
+    opacity: 1;
+    scale: 1;
+  }
+  45% {
+    opacity: 1;
+    scale: 1.7;
+  }
+  100% {
+    opacity: 0;
+    scale: 0.15;
+  }
+}
+@keyframes calm-light-caught {
+  0% {
+    opacity: 1;
+    scale: 1;
+  }
+  45% {
+    opacity: 1;
+    scale: 1.7;
+  }
+  100% {
+    opacity: 0;
+    scale: 0.15;
+  }
+}
+@-webkit-keyframes calm-light-fade {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%) scale(0.3);
+            transform: translate(-50%, -50%) scale(0.3);
+  }
+}
+@keyframes calm-light-fade {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%) scale(0.3);
+            transform: translate(-50%, -50%) scale(0.3);
+  }
+}
+@-webkit-keyframes calm-trail-appear {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%) scale(0.3);
+            transform: translate(-50%, -50%) scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes calm-trail-appear {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%) scale(0.3);
+            transform: translate(-50%, -50%) scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+  }
+}
+/* ==========================================
+   ПЛАНШЕТ
+========================================== */
+@media (max-width: 900px) {
+  .angry-calm__content {
+    min-height: calc(100vh - 160px);
+    min-height: calc(100dvh - 160px);
+  }
+  .angry-calm__stage {
+    height: clamp(260px, 40vh, 380px);
+  }
+  .angry-calm__elly {
+    width: min(220px, 42vw);
+    height: min(200px, 40vw);
+  }
+  .angry-calm.is-final .angry-calm__stage {
+    height: clamp(180px, 28vh, 260px);
+  }
+}
+/* ==========================================
+   МОБІЛЬНИЙ
+========================================== */
+@media (max-width: 600px) {
+  .angry-calm {
+    padding: var(--space-3);
+  }
+  .angry-calm__content {
+    min-height: calc(100vh - 160px);
+    min-height: calc(100dvh - 160px);
+    gap: var(--space-2);
+  }
+  .angry-calm__title {
+    font-size: 1.25rem;
+  }
+  .angry-calm__stage {
+    height: clamp(240px, 38vh, 260px);
+  }
+  .angry-calm__elly {
+    width: min(190px, 50vw);
+    height: min(180px, 48vw);
+  }
+  .angry-calm__light {
+    width: 28px;
+    height: 28px;
+  }
+  .angry-calm__progress-dot {
+    width: 9px;
+    height: 9px;
+  }
+  .angry-calm__choice {
+    min-height: 44px;
+    font-size: var(--font-size-sm);
+  }
+  .angry-calm.is-final .angry-calm__stage {
+    height: clamp(160px, 26vh, 220px);
+  }
 }/*# sourceMappingURL=style.css.map */
