@@ -1,0 +1,738 @@
+/* ==========================================
+   ANGRY CALM
+   Екран гри «Лови спокій»
+========================================== */
+
+.angry-calm {
+    position: relative;
+
+    display: none;
+
+    width: 100%;
+    padding: var(--space-4);
+    margin-bottom: var(--space-2);
+    background-image: url("../../images/bg_angry_calm.webp");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+
+    border-radius: var(--radius-lg);
+
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    touch-action: none;
+
+    &.is-active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* ==========================================
+       ФІНАЛЬНИЙ СТАН СЕКЦІЇ
+    ========================================== */
+
+    &.is-final {
+        .angry-calm__stage {
+            height: clamp(200px, 32vh, 300px);
+        }
+
+        .angry-calm__progress {
+            opacity: 0;
+            visibility: hidden;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+
+            transition:
+                opacity 400ms ease,
+                visibility 400ms ease,
+                height 400ms ease,
+                margin 400ms ease;
+        }
+
+        .angry-calm__elly {
+            z-index: 10;
+            transform: translateX(-50%) translateY(10px);
+        }
+        .angry-calm__title {
+            min-height: 1em;   
+            transition:
+                min-height 400ms ease,
+                opacity 400ms ease,
+                transform 400ms ease;
+        }
+    }
+
+    /* ==========================================
+       КОНТЕНТ
+    ========================================== */
+
+    &__content {
+        position: relative;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        max-width: 640px;
+
+        /*
+            Розтягуємо контент на всю висоту
+            екрана (мінус header), щоб картка
+            не виглядала обрізаною.
+        */
+
+        min-height: calc(100vh - 200px);
+        min-height: calc(100dvh - 200px);
+
+
+        gap: var(--space-3);
+
+        text-align: center;
+    }
+
+    /* ==========================================
+       ЗАГОЛОВОК — монолог Еллі
+    ========================================== */
+
+    &__title {
+        position: relative;
+        z-index: 5;
+
+        max-width: 520px;
+        min-height: 2.4em;
+
+        margin: 0;
+
+        color: #fff;
+
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-semibold);
+        line-height: 1.3;
+
+        text-align: center;
+
+        text-shadow:
+            0 2px 8px rgb(0 0 0 / 45%),
+            0 0 20px rgb(255 255 255 / 15%);
+
+        transition:
+            opacity 400ms ease,
+            transform 400ms ease;
+    }
+
+    /* ==========================================
+       ПРОГРЕС
+    ========================================== */
+
+    &__progress {
+        position: relative;
+        z-index: 5;
+
+        display: flex;
+        gap: 9px;
+
+        margin: 0;
+    }
+
+    &__progress-dot {
+        width: 10px;
+        height: 10px;
+
+        border-radius: 50%;
+
+        background: rgb(255 255 255 / 35%);
+
+        box-shadow: 0 0 4px rgb(255 255 255 / 25%);
+
+        transition:
+            transform 0.3s ease,
+            background 0.3s ease,
+            box-shadow 0.3s ease;
+
+        &.is-caught {
+            background: #ffe88b;
+
+            transform: scale(1.3);
+
+            box-shadow:
+                0 0 8px rgb(255 232 139 / 90%),
+                0 0 16px rgb(255 232 139 / 60%);
+        }
+    }
+
+    /* ==========================================
+       ІГРОВА СЦЕНА
+    ========================================== */
+
+    &__stage {
+        position: relative;
+
+        width: 100%;
+        max-width: 100%;
+        height: clamp(280px, 42vh, 420px);
+
+        margin: 0;
+
+        overflow: hidden;
+
+        border-radius: var(--radius-lg);
+
+        user-select: none;
+        touch-action: none;
+
+        transition: height 800ms ease;
+    }
+
+    /* ==========================================
+       ЗІРКИ
+    ========================================== */
+
+    &__stars {
+        position: absolute;
+
+        inset: 0;
+
+        z-index: 1;
+
+        pointer-events: none;
+    }
+
+    &__star {
+        position: absolute;
+
+        width: 6px;
+        height: 6px;
+
+        border-radius: 50%;
+
+        background: #fff;
+
+        box-shadow:
+            0 0 5px rgb(255 255 255 / 90%),
+            0 0 12px rgb(255 245 190 / 70%);
+
+        opacity: 0.35;
+
+        animation: calm-star-twinkle 3.5s ease-in-out infinite;
+    }
+
+    &__star::before,
+    &__star::after {
+        content: "";
+
+        position: absolute;
+
+        left: 50%;
+        top: 50%;
+
+        width: 2px;
+        height: 16px;
+
+        border-radius: 50%;
+
+        background: rgb(255 255 255 / 80%);
+
+        transform: translate(-50%, -50%);
+    }
+
+    &__star::after {
+        width: 16px;
+        height: 2px;
+    }
+
+    &__star--1 {
+        top: 14%;
+        left: 17%;
+
+        animation-delay: 0.2s;
+    }
+
+    &__star--2 {
+        top: 24%;
+        left: 72%;
+
+        width: 5px;
+        height: 5px;
+
+        animation-delay: 1.4s;
+    }
+
+    &__star--3 {
+        top: 38%;
+        left: 30%;
+
+        width: 4px;
+        height: 4px;
+
+        animation-delay: 2.2s;
+    }
+
+    &__star--4 {
+        top: 18%;
+        left: 48%;
+
+        width: 7px;
+        height: 7px;
+
+        animation-delay: 0.8s;
+    }
+
+    &__star--5 {
+        top: 43%;
+        left: 82%;
+
+        width: 5px;
+        height: 5px;
+
+        animation-delay: 2.8s;
+    }
+
+    &__star--6 {
+        top: 53%;
+        left: 13%;
+
+        width: 4px;
+        height: 4px;
+
+        animation-delay: 1.8s;
+    }
+
+    /* ==========================================
+       ЕЛЛІ
+    ========================================== */
+
+    &__elly {
+        position: absolute;
+
+        left: 50%;
+        bottom: 0;
+
+        z-index: 3;
+
+        /*
+            Фіксовані пропорції контейнера —
+            картинки не змінюють його розмір.
+        */
+
+        width: min(240px, 45vw);
+        height: min(220px, 42vw);
+
+        transform: translateX(-50%);
+
+        transition: transform 1200ms ease;
+    }
+
+    &__elly-image {
+        /*
+            Абсолютне позиціонування —
+            усі три картинки займають один і той
+            самий прямокутник.
+        */
+
+        position: absolute;
+        inset: 0;
+        margin: auto;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: contain;
+
+        display: none;
+
+        user-select: none;
+        pointer-events: none;
+
+        &.is-visible {
+            display: block;
+        }
+
+        &--fireflies2 {
+            transform: translate(0px, 2px) scale(1.15);
+        }
+
+        &--fireflies3 {
+            transform: translate(2px, 2px) scale(1.02);
+            transform-origin: center center;
+        }
+    }
+
+
+    /* ==========================================
+       СЛІД СПОКОЮ НАВКОЛО ЕЛЛІ
+    ========================================== */
+
+    &__trail {
+        position: absolute;
+
+        width: 16px;
+        height: 16px;
+
+        border-radius: 50%;
+
+        background: radial-gradient(
+            circle,
+            #fff 0%,
+            #ffe98a 40%,
+            transparent 70%
+        );
+
+        box-shadow:
+            0 0 8px rgb(255 233 138 / 90%),
+            0 0 16px rgb(255 233 138 / 50%);
+
+        transform: translate(-50%, -50%);
+
+        animation: calm-trail-appear 600ms ease forwards;
+
+        pointer-events: none;
+
+        z-index: 2;
+    }
+
+    /* ==========================================
+       СВІТЛЯЧКИ
+    ========================================== */
+
+    &__lights {
+        position: absolute;
+
+        inset: 0;
+
+        z-index: 4;
+
+        pointer-events: none;
+    }
+
+    &__light {
+        position: absolute;
+
+        width: 32px;
+        height: 32px;
+
+        padding: 0;
+
+        border: 0;
+        border-radius: 50%;
+
+        cursor: pointer;
+
+        pointer-events: auto;
+
+        background: radial-gradient(
+            circle,
+            #fff 0%,
+            #fff8c9 20%,
+            #ffe98a 45%,
+            rgb(255 229 125 / 45%) 65%,
+            transparent 74%
+        );
+
+        box-shadow:
+            0 0 8px rgb(255 241 170 / 95%),
+            0 0 20px rgb(255 226 105 / 70%),
+            0 0 40px rgb(255 215 100 / 35%);
+
+        transform: translate(-50%, -50%);
+
+        animation: calm-light-pulse 1.8s ease-in-out infinite;
+
+        appearance: none;
+
+        &.is-caught {
+            animation: calm-light-caught 0.65s ease forwards;
+
+            pointer-events: none;
+        }
+        /*
+        Політ до Еллі.
+        Світлячок плавно рухається до центру Еллі,
+        зменшується та зникає.
+        */
+
+        &.is-flying {
+            pointer-events: none;
+
+            transition:
+                left 800ms ease-in,
+                top 800ms ease-in,
+                transform 800ms ease-in,
+                opacity 800ms ease-in;
+
+            z-index: 100;
+        }
+
+        /*
+            Плавне згасання декоративного світлячка
+            на своєму місці.
+        */
+
+        &.is-fading {
+            pointer-events: none;
+
+            animation: calm-light-fade 300ms ease forwards;
+        }
+    }
+
+    /* ==========================================
+       ФІНАЛ
+    ========================================== */
+
+    &__finish {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-2);
+
+        width: 100%;
+        max-width: 320px;
+        margin: 0;
+        text-align: center;
+
+        opacity: 0;
+        transform: translateY(40px);
+
+        &.is-visible {
+            display: flex;
+            animation: angry-calm-finish-appear 800ms ease forwards;
+        }
+    }
+
+    @keyframes angry-calm-finish-appear {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ==========================================
+       КНОПКИ
+    ========================================== */
+
+    &__choices {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+
+        width: 100%;
+    }
+
+    &__choice {
+        width: 100%;
+        min-height: 48px;
+
+        padding: var(--space-2) var(--space-4);
+
+        border: 1px solid rgb(255 255 255 / 35%);
+        border-radius: var(--radius-md);
+
+        background-color: rgb(255 255 255 / 15%);
+        color: #fff;
+
+        font-family: var(--font-family);
+        font-size: var(--font-size-md);
+        font-weight: var(--font-weight-medium);
+
+        cursor: pointer;
+
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+
+        transition:
+            background-color var(--transition-fast),
+            border-color var(--transition-fast),
+            transform var(--transition-fast);
+
+        &:hover {
+            background-color: rgb(255 255 255 / 25%);
+            border-color: rgb(255 255 255 / 55%);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+
+        &:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 3px;
+        }
+    }
+
+    /* ==========================================
+       КНОПКА «ПОВЕРНУТИСЯ»
+    ========================================== */
+
+    .activity-back,
+    .button__back {
+        color: rgb(255 255 255 / 75%);
+
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+
+
+/* ==========================================
+   АНІМАЦІЇ
+========================================== */
+
+@keyframes calm-star-twinkle {
+    0%,
+    100% {
+        opacity: 0.25;
+        transform: scale(0.75);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
+
+@keyframes calm-light-pulse {
+    0%,
+    100% {
+        opacity: 0.78;
+        scale: 0.9;
+    }
+
+    50% {
+        opacity: 1;
+        scale: 1.08;
+    }
+}
+
+@keyframes calm-light-caught {
+    0% {
+        opacity: 1;
+        scale: 1;
+    }
+
+    45% {
+        opacity: 1;
+        scale: 1.7;
+    }
+
+    100% {
+        opacity: 0;
+        scale: 0.15;
+    }
+}
+
+@keyframes calm-light-fade {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.3);
+    }
+}
+
+@keyframes calm-trail-appear {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.3);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+
+/* ==========================================
+   ПЛАНШЕТ
+========================================== */
+
+@media (max-width: 900px) {
+
+    .angry-calm {
+        &__content {
+            min-height: calc(100vh - 160px);
+            min-height: calc(100dvh - 160px);
+        }
+
+        &__stage {
+            height: clamp(260px, 40vh, 380px);
+        }
+
+        &__elly {
+            width: min(220px, 42vw);
+            height: min(200px, 40vw);
+        }
+
+        &.is-final {
+            .angry-calm__stage {
+                height: clamp(180px, 28vh, 260px);
+            }
+        }
+    }
+}
+
+
+/* ==========================================
+   МОБІЛЬНИЙ
+========================================== */
+
+@media (max-width: 600px) {
+
+    .angry-calm {
+        padding: var(--space-3);
+
+        &__content {
+            min-height: calc(100vh - 160px);
+            min-height: calc(100dvh - 160px);
+
+            gap: var(--space-2);
+        }
+
+        &__title {
+            font-size: 1.25rem;
+        }
+
+        &__stage {
+            height: clamp(240px, 38vh, 260px);
+        }
+
+        &__elly {
+            width: min(190px, 50vw);
+            height: min(180px, 48vw);
+        }
+
+        &__light {
+            width: 28px;
+            height: 28px;
+        }
+
+        &__progress-dot {
+            width: 9px;
+            height: 9px;
+        }
+
+        &__choice {
+            min-height: 44px;
+            font-size: var(--font-size-sm);
+        }
+
+        &.is-final {
+            .angry-calm__stage {
+                height: clamp(160px, 26vh, 220px);
+            }
+        }
+    }
+}
