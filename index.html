@@ -107,7 +107,7 @@
                 </button>
 
                 <!-- Втома -->
-                <button class="state-card" type="button">
+                <button class="state-card" data-state="tired" type="button">
                     <div class="state-card__emoji state-card__emoji--tired" aria-hidden="true">
                     </div>
 
@@ -887,13 +887,13 @@
 
                 <!-- Фінальний блок -->
                 <div class="angry-steam__finish" aria-hidden="true">
-                <p class="angry-steam__thanks" data-steam-thanks></p>
-                <p class="angry-steam__question">А ти як себе почуваєш?</p>
-                <div class="angry-steam__choices">
-                    <button class="angry-steam__choice" data-angry-choice="calm">Я вже так не злюся</button>
-                    <button class="angry-steam__choice" data-angry-choice="still-angry">Я ще злюся</button>
+                    <p class="angry-steam__thanks" data-steam-thanks></p>
+                    <p class="angry-steam__question">А ти як себе почуваєш?</p>
+                    <div class="angry-steam__choices">
+                        <button class="angry-steam__choice" data-angry-choice="calm">Я вже так не злюся</button>
+                        <button class="angry-steam__choice" data-angry-choice="still-angry">Я ще злюся</button>
+                    </div>
                 </div>
-            </div>
 
             </div>
         </section>
@@ -905,19 +905,10 @@
                 </h2>
 
                 <div class="angry-final__elly">
-                    <img
-                        class="angry-final__elly-image angry-final__elly-image--current"
-                        src="images/elly/elly_angry_2.webp"
-                        alt="Еллі"
-                        data-angry-final-image
-                    >
-                    <img
-                        class="angry-final__elly-image angry-final__elly-image--blink"
-                        src="images/elly/elly_angry_1.webp"
-                        alt=""
-                        aria-hidden="true"
-                        data-angry-final-blink
-                    >
+                    <img class="angry-final__elly-image angry-final__elly-image--current"
+                        src="images/elly/elly_angry_2.webp" alt="Еллі" data-angry-final-image>
+                    <img class="angry-final__elly-image angry-final__elly-image--blink"
+                        src="images/elly/elly_angry_1.webp" alt="" aria-hidden="true" data-angry-final-blink>
                 </div>
 
                 <!-- activity-options вставится сюда через JS -->
@@ -938,9 +929,7 @@
                 </h2>
 
                 <!-- Прогрес — крапочки під заголовком -->
-                <div
-                    class="angry-calm__progress"
-                    data-calm-progress>
+                <div class="angry-calm__progress" data-calm-progress>
                 </div>
 
                 <!-- Ігрова сцена -->
@@ -957,60 +946,269 @@
                     </div>
 
                     <!-- Світлячки з'являться тут -->
-                    <div
-                        class="angry-calm__lights"
-                        data-calm-lights>
+                    <div class="angry-calm__lights" data-calm-lights>
                     </div>
 
                     <!-- Еллі -->
                     <div class="angry-calm__elly">
 
-                        <img
-                            class="angry-calm__elly-image angry-calm__elly-image--fireflies1 is-visible"
-                            src="images/elly/elly_angry_fireflies1.webp"
-                            alt=""
-                        >
+                        <img class="angry-calm__elly-image angry-calm__elly-image--fireflies1 is-visible"
+                            src="images/elly/elly_angry_fireflies1.webp" alt="">
 
-                        <img
-                            class="angry-calm__elly-image angry-calm__elly-image--fireflies2"
-                            src="images/elly/elly_angry_fireflies2.webp"
-                            alt=""
-                        >
+                        <img class="angry-calm__elly-image angry-calm__elly-image--fireflies2"
+                            src="images/elly/elly_angry_fireflies2.webp" alt="">
 
-                        <img
-                            class="angry-calm__elly-image angry-calm__elly-image--fireflies3"
-                            src="images/elly/elly_angry_fireflies3.webp"
-                            alt=""
-                        >
+                        <img class="angry-calm__elly-image angry-calm__elly-image--fireflies3"
+                            src="images/elly/elly_angry_fireflies3.webp" alt="">
 
                     </div>
 
                 </div>
 
                 <!-- Фінальний блок -->
-                <div
-                    class="angry-calm__finish"
-                    data-calm-finish>
+                <div class="angry-calm__finish" data-calm-finish>
 
                     <div class="angry-calm__choices">
 
-                        <button
-                            type="button"
-                            class="angry-calm__choice"
-                            data-calm-choice="calm">
+                        <button type="button" class="angry-calm__choice" data-calm-choice="calm">
                             Мені вже спокійніше
                         </button>
 
-                        <button
-                            type="button"
-                            class="angry-calm__choice"
-                            data-calm-choice="angry">
+                        <button type="button" class="angry-calm__choice" data-calm-choice="angry">
                             Я все ще злюся
                         </button>
 
                     </div>
 
                 </div>
+
+            </div>
+        </section>
+
+        <!-- =========================================================
+            ЕКРАН «Я ДУЖЕ ВТОМИВСЯ»
+            ========================================================== -->
+        <section class="tired" aria-hidden="true">
+
+            <!-- Уровень 1: выбор категории -->
+            <div class="tired__choose" data-tired-screen="choose">
+
+                <h2 class="tired__title">
+                    Ти дуже втомився?
+                </h2>
+
+                <p class="tired__subtitle">
+                    Тоді давай просто трохи відпочинемо.
+                </p>
+
+                <div class="tired__elly">
+                    <img class="tired__elly-image" src="images/elly/elly_tired.webp" alt="Еллі">
+                </div>
+
+                <p class="tired__question">
+                    Обери, що тобі зараз приємно:
+                </p>
+
+                <div class="tired__categories">
+
+                    <button class="tired__category" type="button" data-tired-category="sea">
+                        <span class="tired__category-icon" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 26 C16 18, 24 18, 32 26 C40 34, 48 34, 56 26" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" />
+                                <path d="M8 38 C16 30, 24 30, 32 38 C40 46, 48 46, 56 38" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" />
+                                <path d="M8 50 C16 42, 24 42, 32 50 C40 58, 48 58, 56 50" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <span class="tired__category-name">Море</span>
+                    </button>
+
+                    <button class="tired__category" type="button" data-tired-category="rain">
+                        <span class="tired__category-icon" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M18 30 C14 30, 10 27, 10 22 C10 17, 14 14, 18 14 C20 8, 26 4, 32 4 C40 4, 46 10, 46 18 C52 18, 56 22, 56 28 C56 30, 54 32, 52 32"
+                                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M22 42 L18 52" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round" />
+                                <path d="M32 42 L28 52" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round" />
+                                <path d="M42 42 L38 52" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <span class="tired__category-name">Дощ</span>
+                    </button>
+
+                    <button class="tired__category" type="button" data-tired-category="birds">
+                        <span class="tired__category-icon" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M44 24 C44 16, 38 10, 30 10 C22 10, 14 18, 14 26 C14 32, 18 38, 24 40 L24 50 L28 50 L28 40 C32 40, 36 38, 38 34 Z"
+                                    stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" fill="none" />
+
+                                <path d="M14 24 L8 22 L13 26 Z" fill="currentColor" />
+
+                                <path d="M40 30 C46 28, 54 28, 58 32 L54 34 L58 36 C52 38, 46 36, 40 34 Z"
+                                    fill="currentColor" />
+
+                                <circle cx="24" cy="22" r="2" fill="currentColor" />
+                            </svg>
+                        </span>
+                        <span class="tired__category-name">Птахи</span>
+                    </button>
+
+                    <button class="tired__category" type="button" data-tired-category="forest">
+                        <span class="tired__category-icon" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M32 6 L22 24 L26 24 L18 38 L24 38 L14 52 L50 52 L40 38 L46 38 L38 24 L42 24 Z"
+                                    stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" />
+                                <path d="M32 52 L32 58" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <span class="tired__category-name">Ліс</span>
+                    </button>
+
+                    <button class="tired__category" type="button" data-tired-category="stream">
+                        <span class="tired__category-icon" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M32 8 C24 18, 18 26, 18 36 C18 44, 24 50, 32 50 C40 50, 46 44, 46 36 C46 26, 40 18, 32 8 Z"
+                                    stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" />
+                                <path d="M26 38 C26 42, 29 45, 32 45" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <span class="tired__category-name">Струмок</span>
+                    </button>
+
+                    <button class="tired__category" type="button" data-tired-category="night">
+                        <span class="tired__category-icon" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M40 8 C22 12, 12 26, 12 38 C12 50, 22 58, 36 58 C22 54, 18 42, 20 32 C22 22, 30 14, 40 8 Z"
+                                    fill="currentColor" opacity="0.9" />
+                                <!-- Звёзды -->
+                                <path d="M44 16 L45 20 L49 21 L45 22 L44 26 L43 22 L39 21 L43 20 Z"
+                                    fill="currentColor" />
+                                <path d="M52 30 L52.5 32 L54.5 32.5 L52.5 33 L52 35 L51.5 33 L49.5 32.5 L51.5 32 Z"
+                                    fill="currentColor" />
+                                <path d="M46 44 L46.5 46 L48.5 46.5 L46.5 47 L46 49 L45.5 47 L43.5 46.5 L45.5 46 Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </span>
+                        <span class="tired__category-name">Ніч</span>
+                    </button>
+
+                    <button class="tired__category" type="button" data-tired-category="special">
+                        <span class="tired__category-icon" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M32 8 L35 26 L54 32 L35 38 L32 56 L29 38 L10 32 L29 26 Z" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linejoin="round" />
+                                <path d="M48 14 L49 20 L54 22 L49 24 L48 30 L47 24 L42 22 L47 20 Z" fill="currentColor"
+                                    opacity="0.5" />
+                            </svg>
+                        </span>
+                        <span class="tired__category-name">Щось особливе</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Уровень 2: выбор вариации -->
+            <div class="tired__variants" data-tired-screen="variants" aria-hidden="true">
+
+                <img class="tired__variants-bg" data-tired-bg src="" alt="">
+
+                <div class="tired__variants-content">
+
+                    <h2 class="tired__variants-title" data-tired-variants-title>
+                        Обери, що тобі більше до вподоби
+                    </h2>
+
+                    <div class="tired__variants-list" data-tired-variants-list>
+                        <!-- JS заполнит кнопки -->
+                    </div>
+
+                    <button class="tired__back" type="button" data-tired-back>
+                        ← Назад
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Уровень 3: отдых -->
+            <div class="tired__rest" data-tired-screen="rest" aria-hidden="true">
+
+                <img class="tired__rest-bg" data-tired-rest-bg src="" alt="">
+
+                <div class="tired__rest-elly">
+                    <img class="tired__rest-elly-image" src="images/elly/elly_tired1.webp" alt="Еллі відпочиває">
+                </div>
+
+                <div class="tired__controls">
+
+                    <div class="tired__controls-icons">
+
+                        <button class="tired__control" type="button" data-tired-pause aria-label="Пауза">
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                data-tired-pause-icon>
+                                <rect x="20" y="16" width="8" height="32" rx="2" fill="currentColor" />
+                                <rect x="36" y="16" width="8" height="32" rx="2" fill="currentColor" />
+                            </svg>
+                        </button>
+
+                        <button class="tired__control" type="button" data-tired-change aria-label="Змінити звук">
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14 32 C14 22, 22 14, 32 14 C42 14, 50 22, 50 32" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" />
+                                <path d="M50 32 C50 42, 42 50, 32 50 C22 50, 14 42, 14 32" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" />
+                                <path d="M50 18 L50 32 L36 32" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+
+                        <button class="tired__control" type="button" data-tired-close aria-label="Закрити">
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 18 L46 46 M46 18 L18 46" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </button>
+
+                    </div>
+
+                    <button class="tired__done" type="button" data-tired-done>
+                        Мені вже краще
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Финал -->
+            <div class="tired__final" data-tired-screen="final" aria-hidden="true">
+
+                <h2 class="tired__final-title" data-tired-final-title>
+                    Як добре, що ми разом відпочили
+                </h2>
+
+                <div class="tired__final-elly">
+                    <img class="tired__final-elly-image tired__final-elly-image--current"
+                        src="images/elly/elly_angry_2.webp" alt="Еллі">
+                    <img class="tired__final-elly-image tired__final-elly-image--next"
+                        src="images/elly/elly_angry_2.webp" alt="" aria-hidden="true">
+                    <img class="tired__final-elly-image tired__final-elly-image--blink"
+                        src="images/elly/elly_angry_1.webp" alt="" aria-hidden="true">
+                </div>
+
+                <div class="tired__action"></div>
 
             </div>
 

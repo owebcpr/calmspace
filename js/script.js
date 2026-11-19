@@ -39,6 +39,8 @@ const angrySteam = document.querySelector(".angry-steam");
 const angryCalm = document.querySelector(".angry-calm");
 
 
+
+
 /* =========================================================
    2. ГРА «РОЗПЛУТАЙ НИТКИ»
    ========================================================= */
@@ -145,7 +147,7 @@ const angryCalmProgress =
     document.querySelector("[data-calm-progress]");
 
 const angryCalmTitle =
-    document.querySelector("[data-calm-title]");    
+    document.querySelector("[data-calm-title]");
 
 const angryCalmFinish =
     document.querySelector("[data-calm-finish]");
@@ -280,6 +282,120 @@ const sceneTasks = {
     }
 };
 
+/* =========================================================
+   7.1. КОНФІГУРАЦІЯ ЕКРАНА «Я ДУЖЕ ВТОМИВСЯ»
+   ========================================================= */
+
+// Категорії звуків для відпочинку
+const TIRED_CATEGORIES = {
+    sea: {
+        name: "Море",
+        categoryImage: "images/tired/sea/category.webp",
+        variants: [
+            { name: "Тихі хвилі", image: "images/tired/sea/sea1.webp", sound: "sounds/tired/sea/sea1.mp3" },
+            { name: "Прибій", image: "images/tired/sea/sea2.webp", sound: "sounds/tired/sea/sea2.mp3" },
+            { name: "Море ввечері", image: "images/tired/sea/sea3.webp", sound: "sounds/tired/sea/sea3.mp3" }
+        ]
+    },
+    rain: {
+        name: "Дощ",
+        categoryImage: "images/tired/rain/category.webp",
+        variants: [
+            { name: "Тихий дощик", image: "images/tired/rain/rain1.webp", sound: "sounds/tired/rain/rain1.mp3" },
+            { name: "Дощ у лісі", image: "images/tired/rain/rain2.webp", sound: "sounds/tired/rain/rain2.mp3" },
+            { name: "Літня злива", image: "images/tired/rain/rain3.webp", sound: "sounds/tired/rain/rain3.mp3" }
+        ]
+    },
+    birds: {
+        name: "Птахи",
+        categoryImage: "images/tired/birds/category.webp",
+        variants: [
+            { name: "Ранкові птахи", image: "images/tired/birds/birds1.webp", sound: "sounds/tired/birds/birds1.mp3" },
+            { name: "Пташиний хор", image: "images/tired/birds/birds2.webp", sound: "sounds/tired/birds/birds2.mp3" },
+            { name: "Птахи в саду", image: "images/tired/birds/birds3.webp", sound: "sounds/tired/birds/birds3.mp3" }
+        ]
+    },
+    forest: {
+        name: "Ліс",
+        categoryImage: "images/tired/forest/category.webp",
+        variants: [
+            { name: "Шелест лісу", image: "images/tired/forest/forest1.webp", sound: "sounds/tired/forest/forest1.mp3" },
+            { name: "Лісова атмосфера", image: "images/tired/forest/forest2.webp", sound: "sounds/tired/forest/forest2.mp3" },
+            { name: "Ліс після дощу", image: "images/tired/forest/forest3.webp", sound: "sounds/tired/forest/forest3.mp3" }
+        ]
+    },
+    stream: {
+        name: "Струмок",
+        categoryImage: "images/tired/stream/category.webp",
+        variants: [
+            { name: "Журчання води", image: "images/tired/stream/stream1.webp", sound: "sounds/tired/stream/stream1.mp3" },
+            { name: "Струмок між камінням", image: "images/tired/stream/stream2.webp", sound: "sounds/tired/stream/stream2.mp3" },
+            { name: "Лісовий струмок", image: "images/tired/stream/stream3.webp", sound: "sounds/tired/stream/stream3.mp3" }
+        ]
+    },
+    night: {
+        name: "Ніч",
+        categoryImage: "images/tired/night/category.webp",
+        variants: [
+            { name: "Цвіркуни", image: "images/tired/night/night1.webp", sound: "sounds/tired/night/night1.mp3" },
+            { name: "Ніч у лісі", image: "images/tired/night/night2.webp", sound: "sounds/tired/night/night2.mp3" },
+            { name: "Тиха ніч", image: "images/tired/night/night3.webp", sound: "sounds/tired/night/night3.mp3" }
+        ]
+    },
+    special: {
+        name: "Щось особливе",
+        categoryImage: "images/tired/special/category.webp",
+        variants: [
+            { name: "Мурчання кота", image: "images/tired/special/cat.webp", sound: "sounds/tired/special/cat.mp3" },
+            { name: "Вечірнє багаття", image: "images/tired/special/fireplace.webp", sound: "sounds/tired/special/fireplace.mp3" },
+            { name: "Світанок", image: "images/tired/special/dawning.webp", sound: "sounds/tired/special/dawning.mp3" }
+        ]
+    }
+};
+
+// Головний аудіоелемент
+const TIRED_AUDIO_VOLUME = 0.6;
+
+/* =========================================================
+   7.2. ЕЛЕМЕНТИ ЕКРАНА «Я ДУЖЕ ВТОМИВСЯ»
+   ========================================================= */
+
+const tired = document.querySelector(".tired");
+
+// Екрани
+const tiredChoose = document.querySelector('[data-tired-screen="choose"]'),
+    tiredVariants = document.querySelector('[data-tired-screen="variants"]'),
+    tiredRest = document.querySelector('[data-tired-screen="rest"]'),
+    tiredFinal = document.querySelector('[data-tired-screen="final"]');
+
+// Елементи вибору категорії
+const tiredCategories = document.querySelectorAll(".tired__category");
+
+// Елементи екрана варіацій
+const tiredVariantsBg = document.querySelector("[data-tired-bg]"),
+    tiredVariantsTitle = document.querySelector("[data-tired-variants-title]"),
+    tiredVariantsList = document.querySelector("[data-tired-variants-list]"),
+    tiredBackBtn = document.querySelector("[data-tired-back]");
+
+// Елементи екрана відпочинку
+const tiredRestBg = document.querySelector("[data-tired-rest-bg]"),
+    tiredPauseBtn = document.querySelector("[data-tired-pause]"),
+    tiredPauseIcon = document.querySelector("[data-tired-pause-icon]"),
+    tiredChangeBtn = document.querySelector("[data-tired-change]"),
+    tiredCloseBtn = document.querySelector("[data-tired-close]"),
+    tiredDoneBtn = document.querySelector("[data-tired-done]");
+
+// Фінал
+const tiredFinalTitle = document.querySelector("[data-tired-final-title]");
+const tiredFinalEllyCurrent = document.querySelector(".tired__final-elly-image--current");
+const tiredFinalEllyBlink = document.querySelector(".tired__final-elly-image--blink");
+
+// Стан екрана
+let tiredCurrentCategory = null;   // Поточна категорія
+let tiredCurrentVariant = null;    // Поточна варіація
+let tiredAudio = null;             // Аудіоелемент
+let tiredIsPaused = false;         // Чи на паузі
+let tiredFinalBlinkTimer = null;   // Таймер моргання у фіналі
 
 /* =========================================================
    8. КНОПКА «ПОВЕРНУТИСЯ»
@@ -348,6 +464,10 @@ function hideAllActivities() {
     if (angryCalm) {
         angryCalm.classList.remove("is-active");
         angryCalm.setAttribute("aria-hidden", "true");
+    }
+    if (tired) {
+        tired.classList.remove("is-active");
+        tired.setAttribute("aria-hidden", "true");
     }
 }
 
@@ -1127,6 +1247,8 @@ function moveActivityOptions(container) {
 
 stateCards.forEach((card) => {
     card.addEventListener("click", () => {
+        // Скидаємо прокрутку при зміні екрана
+        window.scrollTo({ top: 0, behavior: "instant" });
 
         stateCards.forEach((item) =>
             item.classList.remove("is-selected")
@@ -1231,6 +1353,13 @@ stateCards.forEach((card) => {
                 angry.querySelector(".angry__content")
             );
 
+            return;
+        }
+
+        /* ─── «Я ДУЖЕ ВТОМИВСЯ» → ВІДПОЧИНОК ─── */
+
+        if (state === "tired") {
+            openTiredScreen();
             return;
         }
 
@@ -2820,10 +2949,10 @@ function createSteamBalloon() {
 
     const color =
         STEAM_BALLOON_COLORS[
-            Math.floor(
-                Math.random() *
-                STEAM_BALLOON_COLORS.length
-            )
+        Math.floor(
+            Math.random() *
+            STEAM_BALLOON_COLORS.length
+        )
         ];
 
     balloon.classList.add(
@@ -3515,10 +3644,10 @@ function moveCalmLight(light, stage) {
 
     const path =
         paths[
-            Math.min(
-                stage - 1,
-                paths.length - 1
-            )
+        Math.min(
+            stage - 1,
+            paths.length - 1
+        )
         ];
 
     /*
@@ -3583,18 +3712,18 @@ function moveCalmLight(light, stage) {
 
         const next =
             path[
-                (currentIndex + 1) %
-                path.length
+            (currentIndex + 1) %
+            path.length
             ];
 
         const eased =
             progress < 0.5
                 ? 2 * progress * progress
                 : 1 -
-                    Math.pow(
-                        -2 * progress + 2,
-                        2
-                    ) / 2;
+                Math.pow(
+                    -2 * progress + 2,
+                    2
+                ) / 2;
 
         const x =
             current.x +
@@ -3955,7 +4084,7 @@ function finishAngryCalm() {
 
     angryCalm.classList.add("is-final");
 
-     hideActivityBack();
+    hideActivityBack();
 
     setTimeout(() => {
 
@@ -4119,113 +4248,113 @@ document.querySelectorAll(".angry-steam__choice")
 
         button.addEventListener("click", () => {
 
-                const choice = button.dataset.angryChoice;
-
-                if (choice === "calm") {
-
-                    resetAngrySteam();
-
-                    angrySteam.classList.remove("is-active");
-
-                    angrySteam.setAttribute("aria-hidden", "true" );
-
-                    showAngryFinal("calm");
-
-                    return;
-                }
-
-                if (choice === "still-angry") {
-
-                    resetAngrySteam();
-
-                    angrySteam.classList.remove("is-active");
-
-                    angrySteam.setAttribute("aria-hidden", "true");
-
-                    angryReturnsCount++;
-
-                    if (angryReturnsCount >= 3) {
-                        showAngryFinal("still-angry");
-                        return;
-                    }
-
-                    angry.classList.add("is-active");
-
-                    angry.setAttribute("aria-hidden", "false");
-
-                    setAngryPhrase();
-
-                    const angryGames = angry.querySelector(".angry__games");
-
-                    if (angryGames) {
-                        angryGames.style.display = "";
-                    }
-
-                    hideActivityBack();
-
-                    showActivityBack(angry.querySelector(".angry__content"));
-                }
-            }
-        );
-    });
-
-    /* ── Лови спокій ── */
-
-document.querySelectorAll(".angry-calm__choice").forEach((button) => {
-
-        button.addEventListener("click", () => {
-
-            const choice = button.dataset.calmChoice;
-
-            /* ─── «Мені вже спокійніше» ─── */
+            const choice = button.dataset.angryChoice;
 
             if (choice === "calm") {
 
-                resetAngryCalm();
+                resetAngrySteam();
 
-                angryCalm.classList.remove("is-active");
-                angryCalm.setAttribute("aria-hidden", "true");
+                angrySteam.classList.remove("is-active");
+
+                angrySteam.setAttribute("aria-hidden", "true");
 
                 showAngryFinal("calm");
 
                 return;
             }
 
-            /* ─── «Я все ще злюся» ─── */
+            if (choice === "still-angry") {
 
-            if (choice === "angry") {
+                resetAngrySteam();
 
-                resetAngryCalm();
+                angrySteam.classList.remove("is-active");
 
-                angryCalm.classList.remove("is-active");
-                angryCalm.setAttribute("aria-hidden", "true");
+                angrySteam.setAttribute("aria-hidden", "true");
 
                 angryReturnsCount++;
 
                 if (angryReturnsCount >= 3) {
-
                     showAngryFinal("still-angry");
-
                     return;
                 }
 
                 angry.classList.add("is-active");
+
                 angry.setAttribute("aria-hidden", "false");
 
                 setAngryPhrase();
 
-                const angryGames =
-                    angry.querySelector(".angry__games");
+                const angryGames = angry.querySelector(".angry__games");
 
                 if (angryGames) {
                     angryGames.style.display = "";
                 }
 
                 hideActivityBack();
+
                 showActivityBack(angry.querySelector(".angry__content"));
             }
-        });
+        }
+        );
     });
+
+/* ── Лови спокій ── */
+
+document.querySelectorAll(".angry-calm__choice").forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        const choice = button.dataset.calmChoice;
+
+        /* ─── «Мені вже спокійніше» ─── */
+
+        if (choice === "calm") {
+
+            resetAngryCalm();
+
+            angryCalm.classList.remove("is-active");
+            angryCalm.setAttribute("aria-hidden", "true");
+
+            showAngryFinal("calm");
+
+            return;
+        }
+
+        /* ─── «Я все ще злюся» ─── */
+
+        if (choice === "angry") {
+
+            resetAngryCalm();
+
+            angryCalm.classList.remove("is-active");
+            angryCalm.setAttribute("aria-hidden", "true");
+
+            angryReturnsCount++;
+
+            if (angryReturnsCount >= 3) {
+
+                showAngryFinal("still-angry");
+
+                return;
+            }
+
+            angry.classList.add("is-active");
+            angry.setAttribute("aria-hidden", "false");
+
+            setAngryPhrase();
+
+            const angryGames =
+                angry.querySelector(".angry__games");
+
+            if (angryGames) {
+                angryGames.style.display = "";
+            }
+
+            hideActivityBack();
+            showActivityBack(angry.querySelector(".angry__content"));
+        }
+    });
+});
 
 
 
@@ -4269,9 +4398,431 @@ document
 
 
 /* =========================================================
-   33. ІНІЦІАЛІЗАЦІЯ
+   33. ЕКРАН «Я ДУЖЕ ВТОМИВСЯ» — ФУНКЦІЇ
+   ========================================================= */
+
+/* ───── Показати один з екранів ───── */
+
+function showTiredScreen(screenName) {
+    // Ховаємо всі екрани
+    [tiredChoose, tiredVariants, tiredRest, tiredFinal].forEach((screen) => {
+        if (!screen) return;
+
+        screen.classList.remove("is-visible");
+        screen.setAttribute("aria-hidden", "true");
+    });
+
+    // Показуємо потрібний
+    const screenMap = {
+        choose: tiredChoose,
+        variants: tiredVariants,
+        rest: tiredRest,
+        final: tiredFinal
+    };
+
+    const targetScreen = screenMap[screenName];
+
+    if (targetScreen) {
+        targetScreen.classList.add("is-visible");
+        targetScreen.setAttribute("aria-hidden", "false");
+    }
+}
+
+/* ───── Відкрити екран «Я дуже втомився» ───── */
+
+function openTiredScreen() {
+    hideAllActivities();
+    hideActivityBack();
+
+    // Скидаємо стан
+    tiredCurrentCategory = null;
+    tiredCurrentVariant = null;
+    stopTiredSound();
+
+    // Показуємо перший екран
+    showTiredScreen("choose");
+
+    // Активуємо секцію
+    tired.classList.add("is-active");
+    tired.setAttribute("aria-hidden", "false");
+
+    // Кнопка «Повернутися» — на головний
+    showActivityBack(tired);
+}
+
+/* ───── Вибір категорії ───── */
+
+function selectTiredCategory(categoryKey) {
+    const category = TIRED_CATEGORIES[categoryKey];
+
+    if (!category) return;
+
+    tiredCurrentCategory = categoryKey;
+
+    hideActivityBack();
+
+    // Фон для екрана варіацій
+    if (tiredVariantsBg) {
+        tiredVariantsBg.src = category.categoryImage;
+        tiredVariantsBg.alt = category.name;
+    }
+
+    // Заголовок
+    if (tiredVariantsTitle) {
+        tiredVariantsTitle.textContent = "Обери, що тобі більше до вподоби";
+    }
+
+    // Кнопки варіацій
+    if (tiredVariantsList) {
+        tiredVariantsList.innerHTML = "";
+
+        category.variants.forEach((variant, index) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "tired__variant";
+            button.textContent = variant.name;
+            button.dataset.tiredVariant = String(index);
+
+            button.addEventListener("click", () => {
+                startTiredRest(index);
+            });
+
+            tiredVariantsList.appendChild(button);
+        });
+    }
+
+    showTiredScreen("variants");
+}
+
+/* ───── Запуск відпочинку ───── */
+
+function startTiredRest(variantIndex) {
+    const category = TIRED_CATEGORIES[tiredCurrentCategory];
+
+    if (!category) return;
+
+    const variant = category.variants[variantIndex];
+
+    if (!variant) return;
+
+    tiredCurrentVariant = variantIndex;
+
+    // Фон
+    if (tiredRestBg) {
+        tiredRestBg.src = variant.image;
+        tiredRestBg.alt = variant.name;
+    }
+
+    // Запускаємо звук
+    playTiredSound(variant.sound);
+
+    // Скидаємо паузу
+    tiredIsPaused = false;
+    updateTiredPauseIcon();
+
+    showTiredScreen("rest");
+}
+
+/* ───── Відтворення звуку ───── */
+
+function playTiredSound(soundSrc) {
+    // Зупиняємо попередній
+    stopTiredSound();
+
+    tiredAudio = new Audio(soundSrc);
+    tiredAudio.loop = true;
+    tiredAudio.volume = TIRED_AUDIO_VOLUME;
+
+    tiredAudio.play().catch((error) => {
+        console.warn("Не вдалося відтворити звук:", error);
+    });
+}
+
+/* ───── Зупинка звуку ───── */
+
+function stopTiredSound() {
+    if (tiredAudio) {
+        tiredAudio.pause();
+        tiredAudio.currentTime = 0;
+        tiredAudio = null;
+    }
+}
+
+/* ───── Пауза / продовження ───── */
+
+function toggleTiredPause() {
+    if (!tiredAudio) return;
+
+    if (tiredIsPaused) {
+        tiredAudio.play().catch(() => { });
+        tiredIsPaused = false;
+    } else {
+        tiredAudio.pause();
+        tiredIsPaused = true;
+    }
+
+    updateTiredPauseIcon();
+}
+
+/* ───── Оновлення іконки паузи ───── */
+
+function updateTiredPauseIcon() {
+    if (!tiredPauseIcon) return;
+
+    if (tiredIsPaused) {
+        // Іконка «Грати» (трикутник)
+        tiredPauseIcon.innerHTML = `
+            <path d="M22 16 L22 48 L48 32 Z" fill="currentColor"/>
+        `;
+    } else {
+        // Іконка «Пауза» (дві смужки)
+        tiredPauseIcon.innerHTML = `
+            <rect x="20" y="16" width="8" height="32" rx="2" fill="currentColor"/>
+            <rect x="36" y="16" width="8" height="32" rx="2" fill="currentColor"/>
+        `;
+    }
+}
+
+/* ───── Змінити звук ───── */
+
+function changeTiredSound() {
+    // Повертаємося до вибору варіації
+    stopTiredSound();
+    tiredIsPaused = false;
+
+    showTiredScreen("variants");
+}
+
+/* ───── Закрити екран ───── */
+
+function closeTiredScreen() {
+    stopTiredSound();
+    tiredIsPaused = false;
+
+    showTiredScreen("choose");
+}
+
+/* ───── Фінал — «Мені вже краще» ───── */
+
+function finishTired() {
+    stopTiredSound();
+    tiredIsPaused = false;
+
+    // 1. Заголовок
+    if (tiredFinalTitle) {
+        tiredFinalTitle.textContent = "Як добре, що ми разом відпочили";
+    }
+
+    // 2. Еллі — перший кадр
+    if (tiredFinalEllyCurrent) {
+        tiredFinalEllyCurrent.src = "images/elly/elly_angry_2.webp";
+        tiredFinalEllyCurrent.style.opacity = "1";
+    }
+
+    if (tiredFinalEllyBlink) {
+        tiredFinalEllyBlink.src = "images/elly/elly_angry_1.webp";
+        tiredFinalEllyBlink.style.opacity = "0";
+    }
+
+    // 3. Показуємо фінал
+    showTiredScreen("final");
+
+    // 4. Моргання
+    startTiredFinalBlinking();
+
+    // 5. Через 3.5 сек — перехід до опцій
+    setTimeout(() => {
+        stopTiredFinalBlinking();
+
+        // Плавний перехід: показуємо elly_sadly3 через --next
+        const tiredFinalEllyNext = document.querySelector(".tired__final-elly-image--next");
+
+        if (tiredFinalEllyNext && tiredFinalEllyCurrent) {
+            // 1. У --next ставимо нову картинку
+            tiredFinalEllyNext.src = "images/elly/elly_sadly3.webp";
+
+            // 2. Через кадр — показуємо --next (плавно проявляється)
+            requestAnimationFrame(() => {
+                tiredFinalEllyNext.style.opacity = "1";
+            });
+
+            // 3. Через 800ms (когда переход завершён) — меняем --current на новую
+            setTimeout(() => {
+                tiredFinalEllyCurrent.src = "images/elly/elly_sadly3.webp";
+                tiredFinalEllyCurrent.style.opacity = "1";
+                tiredFinalEllyNext.style.opacity = "0";
+            }, 800);
+        }
+
+        // 4. Обновляем --blink под новую картинку
+        if (tiredFinalEllyBlink) {
+            tiredFinalEllyBlink.src = "images/elly/elly_sadly3-1.webp";
+            tiredFinalEllyBlink.style.opacity = "0";
+        }
+
+        // 5. Запускаем моргание на elly_sadly3
+        startTiredSadlyBlinking();
+
+        // 6. Поднимаем Элли
+        const ellyContainer = tiredFinal.querySelector(".tired__final-elly");
+        if (ellyContainer) {
+            ellyContainer.classList.add("is-raised");
+        }
+
+        // 7. Показываем опции
+        setTimeout(() => {
+            const tiredAction = tiredFinal.querySelector(".tired__action");
+
+            if (tiredAction) {
+                moveActivityOptions(tiredAction);
+                showActivityOptions(tiredAction);
+                showActivityBack(tiredAction);
+            }
+        }, 500);
+
+    }, 3500);
+}
+
+/* ───── Моргання Еллі у фіналі ───── */
+
+function startTiredFinalBlinking() {
+    stopTiredFinalBlinking();
+
+    if (!tiredFinalEllyBlink) return;
+
+    function doBlink() {
+        tiredFinalEllyBlink.style.opacity = "1";
+
+        setTimeout(() => {
+            tiredFinalEllyBlink.style.opacity = "0";
+        }, 300);
+    }
+
+    // Перше моргання через 1.5 сек
+    tiredFinalBlinkTimer = setTimeout(() => {
+        doBlink();
+
+        // Далі — кожні 3.5 сек з імовірністю
+        tiredFinalBlinkTimer = setInterval(() => {
+            if (Math.random() > 0.4) {
+                doBlink();
+            }
+        }, 3500);
+    }, 1500);
+}
+
+
+
+function stopTiredFinalBlinking() {
+    if (tiredFinalBlinkTimer) {
+        clearTimeout(tiredFinalBlinkTimer);
+        clearInterval(tiredFinalBlinkTimer);
+        tiredFinalBlinkTimer = null;
+    }
+
+    if (tiredFinalEllyBlink) {
+        tiredFinalEllyBlink.style.opacity = "0";
+    }
+}
+
+/* ───── Моргання Еллі на elly_sadly3 ───── */
+
+let tiredSadlyBlinkTimer = null;
+
+function startTiredSadlyBlinking() {
+    stopTiredSadlyBlinking();
+
+    if (!tiredFinalEllyBlink) return;
+
+    function doBlink() {
+        tiredFinalEllyBlink.style.opacity = "1";
+
+        setTimeout(() => {
+            tiredFinalEllyBlink.style.opacity = "0";
+        }, 300);
+    }
+
+    tiredSadlyBlinkTimer = setTimeout(() => {
+        doBlink();
+
+        tiredSadlyBlinkTimer = setInterval(() => {
+            if (Math.random() > 0.4) {
+                doBlink();
+            }
+        }, 3500);
+    }, 1500);
+}
+
+function stopTiredSadlyBlinking() {
+    if (tiredSadlyBlinkTimer) {
+        clearTimeout(tiredSadlyBlinkTimer);
+        clearInterval(tiredSadlyBlinkTimer);
+        tiredSadlyBlinkTimer = null;
+    }
+
+    if (tiredFinalEllyBlink) {
+        tiredFinalEllyBlink.style.opacity = "0";
+    }
+}
+
+/* ───── Скидання екрана ───── */
+
+function resetTired() {
+    stopTiredSound();
+    stopTiredFinalBlinking();
+    stopTiredSadlyBlinking();
+
+    tiredIsPaused = false;
+    tiredCurrentCategory = null;
+    tiredCurrentVariant = null;
+
+    showTiredScreen("choose");
+}
+
+/* ───── Ініціалізація ───── */
+
+function initTired() {
+    // Кнопки категорій
+    tiredCategories.forEach((button) => {
+        button.addEventListener("click", () => {
+            const category = button.dataset.tiredCategory;
+            selectTiredCategory(category);
+        });
+    });
+
+    // Кнопка «Назад» (з варіацій до категорій)
+    if (tiredBackBtn) {
+        tiredBackBtn.addEventListener("click", () => {
+            showTiredScreen("choose");
+        });
+    }
+
+    // Пауза
+    if (tiredPauseBtn) {
+        tiredPauseBtn.addEventListener("click", toggleTiredPause);
+    }
+
+    // Змінити звук
+    if (tiredChangeBtn) {
+        tiredChangeBtn.addEventListener("click", changeTiredSound);
+    }
+
+    // Закрити
+    if (tiredCloseBtn) {
+        tiredCloseBtn.addEventListener("click", closeTiredScreen);
+    }
+
+    // «Мені вже краще»
+    if (tiredDoneBtn) {
+        tiredDoneBtn.addEventListener("click", finishTired);
+    }
+}
+
+/* =========================================================
+   34. ІНІЦІАЛІЗАЦІЯ
    ========================================================= */
 
 initSadEmotionButtons();
 initGroundingChoices();
 initSadControls();
+initTired(); 
